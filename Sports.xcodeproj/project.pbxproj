@@ -17,6 +17,7 @@
 		220735FC2DCFB08700B29459 /* SportsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220735FB2DCFB08700B29459 /* SportsTests.swift */; };
 		220736062DCFB08700B29459 /* SportsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220736052DCFB08700B29459 /* SportsUITests.swift */; };
 		220736082DCFB08700B29459 /* SportsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220736072DCFB08700B29459 /* SportsUITestsLaunchTests.swift */; };
+		2247201A2DD0ED96004D4D99 /* SportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224720192DD0ED96004D4D99 /* SportsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		220736012DCFB08700B29459 /* SportsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		220736052DCFB08700B29459 /* SportsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsUITests.swift; sourceTree = "<group>"; };
 		220736072DCFB08700B29459 /* SportsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		224720192DD0ED96004D4D99 /* SportsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				220735EF2DCFB08700B29459 /* LaunchScreen.storyboard */,
 				220735F22DCFB08700B29459 /* Info.plist */,
 				220735EA2DCFB08600B29459 /* Sports.xcdatamodeld */,
+				224720192DD0ED96004D4D99 /* SportsCollectionViewCell.swift */,
 			);
 			path = Sports;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2247201A2DD0ED96004D4D99 /* SportsCollectionViewCell.swift in Sources */,
 				220735E62DCFB08600B29459 /* ViewController.swift in Sources */,
 				220735E22DCFB08600B29459 /* AppDelegate.swift in Sources */,
 				220735EC2DCFB08600B29459 /* Sports.xcdatamodeld in Sources */,
