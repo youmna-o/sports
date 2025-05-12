@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kuf-eU-dI0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mhw-gh-Iif">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -52,10 +52,11 @@
                             <outlet property="delegate" destination="kuf-eU-dI0" id="DFy-Nl-x9H"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="elP-nD-ogi"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lfo-Og-r3r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2026.046511627907" y="-730.68669527896998"/>
+            <point key="canvasLocation" x="2924.6511627906975" y="-730.68669527896998"/>
         </scene>
         <!--Sports-->
         <scene sceneID="h1Q-rw-UT4">
@@ -165,6 +166,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nds-ac-1lX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1101.5267175572519" y="-24.647887323943664"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JPO-6G-7Vk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mhw-gh-Iif" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xF5-I6-ekp">
+                        <rect key="frame" x="0.0" y="59" width="430" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kuf-eU-dI0" kind="relationship" relationship="rootViewController" id="F5J-Q3-s1T"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h2h-Qw-NhY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2026.046511627907" y="-730.68669527896998"/>
         </scene>
     </scenes>
     <resources>

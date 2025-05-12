@@ -9,6 +9,7 @@ import UIKit
 
 
 private let nibreuseIdentifier = "detailsNib"
+private let nibTeamreuseIdentifier = "teamCell"
 
 class DetailsCollectionViewController: UICollectionViewController  {
     let sectionTitles = ["upcoming", "latest", "teams"]
@@ -16,13 +17,22 @@ class DetailsCollectionViewController: UICollectionViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "Leagues Details"
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNew))
+        self.navigationItem.rightBarButtonItem = add
+        
         let nib = UINib(nibName: "DetailsCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: nibreuseIdentifier)
+        
+        let nibTeam = UINib(nibName: "TeamCollectionViewCell", bundle: nil)
+        collectionView.register(nibTeam, forCellWithReuseIdentifier: nibTeamreuseIdentifier)
+        
+        
         collectionView.register(
             UINib(nibName: "SectionHeaderView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: "SectionHeaderView"
+            
         )
 
         let layout = UICollectionViewCompositionalLayout{index ,environement in
@@ -41,6 +51,12 @@ class DetailsCollectionViewController: UICollectionViewController  {
         }
         
         self.collectionView.setCollectionViewLayout(layout, animated: true)
+    }
+    @objc func addNew() {
+//        let addMovieVC = self.storyboard?.instantiateViewController(withIdentifier: "add") as! AddViewController
+        
+        //            addMovieVC.p = self
+//        self.navigationController?.pushViewController(addMovieVC, animated: true)
     }
     
     override func collectionView(
@@ -86,25 +102,25 @@ class DetailsCollectionViewController: UICollectionViewController  {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: nibreuseIdentifier, for: indexPath) as! DetailsCollectionViewCell
     
-        let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: nibTeamreuseIdentifier, for: indexPath)
         cell.layer.borderColor = UIColor("#1560BD").cgColor
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 14
         cell2.layer.borderColor = UIColor("#1560BD").cgColor
         cell2.layer.borderWidth = 1
         cell2.layer.cornerRadius = 14
-        
-        (cell2.viewWithTag(1) as? UILabel)?.text="hello"
-        if let label = cell.viewWithTag(1) as? UILabel {
-                    label.text = "hello"
-            print("Label updated to hello")
-                }
-
-                if let imageView = cell.viewWithTag(2) as? UIImageView {
-                    imageView.image = UIImage(named: "A")
-                    imageView.layer.cornerRadius = imageView.frame.size.width / 2
-                    imageView.clipsToBounds = true
-                }
+//        
+//        (cell2.viewWithTag(1) as? UILabel)?.text="hello"
+//        if let label = cell.viewWithTag(1) as? UILabel {
+//                    label.text = "hello"
+//            print("Label updated to hello")
+//                }
+//
+//                if let imageView = cell.viewWithTag(2) as? UIImageView {
+//                    imageView.image = UIImage(named: "A")
+//                    imageView.layer.cornerRadius = imageView.frame.size.width / 2
+//                    imageView.clipsToBounds = true
+//                }
         
         
         // Configure the cell
