@@ -120,3 +120,23 @@ class Utils{
    
 
 }
+
+//let itemSize = NSCollectionLayoutSize(
+//    widthDimension: .fractionalWidth(0.5),
+//    heightDimension: .fractionalHeight(1)
+//)
+//let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//
+//let groupSize = NSCollectionLayoutSize(
+//    widthDimension: .fractionalWidth(0.75),
+//    heightDimension: .absolute(200)
+//)
+//let group = NSCollectionLayoutGroup.horizontal(
+//    layoutSize: groupSize,
+//    subitems: [item, item]
+//group.interItemSpacing = .fixed(8)
+//group.contentInsets = .zero
+//
+//let section = NSCollectionLayoutSection(group: group)
+//section.orthogonalScrollingBehavior = .continuous
+//section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)

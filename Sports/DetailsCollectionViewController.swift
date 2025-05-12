@@ -18,8 +18,10 @@ class DetailsCollectionViewController: UICollectionViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Leagues Details"
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNew))
-        self.navigationItem.rightBarButtonItem = add
+        let favoriteImage = UIImage(systemName: "heart.fill")
+        let favoriteButton = UIBarButtonItem(image: favoriteImage, style: .plain, target: self, action: #selector(addNew))
+        self.navigationItem.rightBarButtonItem = favoriteButton
+
         
         let nib = UINib(nibName: "DetailsCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: nibreuseIdentifier)

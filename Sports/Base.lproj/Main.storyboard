@@ -45,6 +45,35 @@
             </objects>
             <point key="canvasLocation" x="2924.6511627906975" y="-730.68669527896998"/>
         </scene>
+        <!--Fav Table View Controller-->
+        <scene sceneID="8mz-fv-ggU">
+            <objects>
+                <tableViewController id="4ep-Lm-fjO" customClass="FavTableViewController" customModule="Sports" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="kOW-jy-7A4">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="zgU-Dy-3wu">
+                                <rect key="frame" x="0.0" y="50" width="430" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zgU-Dy-3wu" id="eD6-JI-3RL">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4ep-Lm-fjO" id="jbT-rJ-0oK"/>
+                            <outlet property="delegate" destination="4ep-Lm-fjO" id="guW-8T-eU6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="mc9-0a-EGL"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Hg-lf-99A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3771.6279069767443" y="-1418.2403433476395"/>
+        </scene>
         <!--Sports-->
         <scene sceneID="h1Q-rw-UT4">
             <objects>
@@ -171,6 +200,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2h-Qw-NhY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2026.046511627907" y="-730.68669527896998"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="N5Q-yX-ltd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kIH-RP-bUb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sqT-A6-67V">
+                        <rect key="frame" x="0.0" y="59" width="430" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4ep-Lm-fjO" kind="relationship" relationship="rootViewController" id="vWN-NX-iN2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1im-74-EMX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2873.0232558139533" y="-1418.2403433476395"/>
         </scene>
     </scenes>
     <resources>
