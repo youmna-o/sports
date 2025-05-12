@@ -12,7 +12,7 @@ class LeaguesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "LeagueTableCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "leagueTableCell")
+        tableView.register(nib, forCellReuseIdentifier: "TeamTableCell")
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none
