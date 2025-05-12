@@ -7,11 +7,12 @@
 
 import UIKit
 
+
 private let nibreuseIdentifier = "detailsNib"
 
 class DetailsCollectionViewController: UICollectionViewController  {
     let sectionTitles = ["upcoming", "latest", "teams"]
-
+    var itemFunc = Utils()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,15 @@ class DetailsCollectionViewController: UICollectionViewController  {
         )
 
         let layout = UICollectionViewCompositionalLayout{index ,environement in
-            if(index==0 || index==2){
-                return self.drawHorizotalSection()
+            
+            switch index{
+             case 0 :
+                return self.itemFunc.drawHorizotalSection()
+            case 1 :
+                return self.itemFunc.drawVerticalSection()
                 
-            }
-            else{
-                return self.drawVerticalSection()
+            default:
+                return self.itemFunc.drawTeamsSection()
             }
             
             
@@ -64,84 +68,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
     
   
     
-    func drawVerticalSection() -> NSCollectionLayoutSection{
-        
-        let bigItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        
-        let item = NSCollectionLayoutItem(layoutSize: bigItemSize)
     
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
-        let myGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-      
-        myGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 4, trailing: 16)
-       
-        let section = NSCollectionLayoutSection(group: myGroup)
-        //section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 0)
-        
-        let headerSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(44)
-            )
-            
-            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: headerSize,
-                elementKind: UICollectionView.elementKindSectionHeader,
-                alignment: .top
-            )
-            
-            section.boundarySupplementaryItems = [sectionHeader]
-        
-        return section
-    }
-    
-    
-
-    
-    
-    func drawHorizotalSection() -> NSCollectionLayoutSection{
-        
-        let bigItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-       
-        let item = NSCollectionLayoutItem(layoutSize: bigItemSize)
-     
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
-       
-        let myGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        myGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 4)
-    
-        let section = NSCollectionLayoutSection(group: myGroup)
-        section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 0)
-        let headerSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(44)
-            )
-            
-            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: headerSize,
-                elementKind: UICollectionView.elementKindSectionHeader,
-                alignment: .top
-            )
-            
-            section.boundarySupplementaryItems = [sectionHeader]
-        //------ animation ----
-        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
-            items.forEach { item in
-                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
-                let minScale: CGFloat = 0.8
-                let maxScale: CGFloat = 1.0
-                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
-                item.transform = CGAffineTransform(scaleX: scale, y: scale)
-            }
-
-        }
-      
-        return section
-    }
-
-   
 
     // MARK: UICollectionViewDataSource
 
@@ -166,6 +93,18 @@ class DetailsCollectionViewController: UICollectionViewController  {
         cell2.layer.borderColor = UIColor("#1560BD").cgColor
         cell2.layer.borderWidth = 1
         cell2.layer.cornerRadius = 14
+        
+        (cell2.viewWithTag(1) as? UILabel)?.text="hello"
+        if let label = cell.viewWithTag(1) as? UILabel {
+                    label.text = "hello"
+            print("Label updated to hello")
+                }
+
+                if let imageView = cell.viewWithTag(2) as? UIImageView {
+                    imageView.image = UIImage(named: "A")
+                    imageView.layer.cornerRadius = imageView.frame.size.width / 2
+                    imageView.clipsToBounds = true
+                }
         
         
         // Configure the cell
