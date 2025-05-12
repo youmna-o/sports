@@ -25,9 +25,8 @@
                             <constraint firstAttribute="width" constant="100" id="aF8-H8-Awx"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbL-IH-bop">
-                        <rect key="frame" x="37" y="140" width="80" height="40"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbL-IH-bop">
+                        <rect key="frame" x="40" y="140" width="41.333333333333343" height="20.333333333333343"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -65,7 +64,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="w50-WK-YQY">
-                        <rect key="frame" x="10" y="25" width="100" height="100"/>
+                        <rect key="frame" x="20" y="25" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="QlM-ye-7C0"/>
                             <constraint firstAttribute="width" constant="100" id="p8G-pu-AW8"/>
@@ -77,7 +76,8 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Trd-m0-kgo" secondAttribute="trailing" constant="60" id="8O0-sK-hZ7"/>
                 <constraint firstItem="Trd-m0-kgo" firstAttribute="top" secondItem="kuB-ai-g7n" secondAttribute="bottom" constant="15" id="AN5-wj-ZAA"/>
-                <constraint firstItem="w50-WK-YQY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Pau-A7-RPR"/>
+                <constraint firstItem="tbL-IH-bop" firstAttribute="top" secondItem="w50-WK-YQY" secondAttribute="bottom" constant="15" id="GbS-uv-QkF"/>
+                <constraint firstItem="w50-WK-YQY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Pau-A7-RPR"/>
                 <constraint firstItem="v1Q-Qn-gpE" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="PjA-ae-HH1"/>
                 <constraint firstAttribute="trailing" secondItem="kuB-ai-g7n" secondAttribute="trailing" constant="20" id="VNC-UC-UJv"/>
                 <constraint firstItem="fDE-ax-wWU" firstAttribute="top" secondItem="v1Q-Qn-gpE" secondAttribute="bottom" constant="13" id="XH9-CU-9k4"/>
@@ -87,6 +87,7 @@
                 <constraint firstItem="kuB-ai-g7n" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="kaf-z8-LEf"/>
                 <constraint firstItem="ub2-Db-pi7" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ke8-G4-lgC"/>
                 <constraint firstItem="v1Q-Qn-gpE" firstAttribute="top" secondItem="ub2-Db-pi7" secondAttribute="bottom" constant="28.666666666666671" id="oSV-CT-sEi"/>
+                <constraint firstItem="tbL-IH-bop" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="40" id="zuF-QK-hzt"/>
             </constraints>
             <connections>
                 <outlet property="date" destination="v1Q-Qn-gpE" id="JG5-9a-ql4"/>
