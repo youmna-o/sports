@@ -12,7 +12,7 @@ class LeaguesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "LeagueTableCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "TeamTableCell")
+        tableView.register(nib, forCellReuseIdentifier: "leagueTableCell")
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         tableView.backgroundColor = UIColor.white
         tableView.separatorStyle = .none
@@ -63,7 +63,13 @@ class LeaguesTableViewController: UITableViewController {
 
         return cell
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetails") as! DetailsCollectionViewController
+
+        //secondViewController.movie = moviesList[indexPath.row]
+
+        self.navigationController?.pushViewController(secondViewController, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.
