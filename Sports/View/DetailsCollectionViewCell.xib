@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kuB-ai-g7n">
-                        <rect key="frame" x="280" y="25" width="100" height="100"/>
+                        <rect key="frame" x="290" y="25" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="Zy5-aF-VsW"/>
                             <constraint firstAttribute="width" constant="100" id="aF8-H8-Awx"/>
@@ -64,7 +64,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="w50-WK-YQY">
-                        <rect key="frame" x="20" y="25" width="100" height="100"/>
+                        <rect key="frame" x="10" y="25" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="QlM-ye-7C0"/>
                             <constraint firstAttribute="width" constant="100" id="p8G-pu-AW8"/>
@@ -77,9 +77,9 @@
                 <constraint firstAttribute="trailing" secondItem="Trd-m0-kgo" secondAttribute="trailing" constant="60" id="8O0-sK-hZ7"/>
                 <constraint firstItem="Trd-m0-kgo" firstAttribute="top" secondItem="kuB-ai-g7n" secondAttribute="bottom" constant="15" id="AN5-wj-ZAA"/>
                 <constraint firstItem="tbL-IH-bop" firstAttribute="top" secondItem="w50-WK-YQY" secondAttribute="bottom" constant="15" id="GbS-uv-QkF"/>
-                <constraint firstItem="w50-WK-YQY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Pau-A7-RPR"/>
+                <constraint firstItem="w50-WK-YQY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Pau-A7-RPR"/>
                 <constraint firstItem="v1Q-Qn-gpE" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="PjA-ae-HH1"/>
-                <constraint firstAttribute="trailing" secondItem="kuB-ai-g7n" secondAttribute="trailing" constant="20" id="VNC-UC-UJv"/>
+                <constraint firstAttribute="trailing" secondItem="kuB-ai-g7n" secondAttribute="trailing" constant="10" id="VNC-UC-UJv"/>
                 <constraint firstItem="fDE-ax-wWU" firstAttribute="top" secondItem="v1Q-Qn-gpE" secondAttribute="bottom" constant="13" id="XH9-CU-9k4"/>
                 <constraint firstItem="fDE-ax-wWU" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="YBM-NY-BxB"/>
                 <constraint firstItem="ub2-Db-pi7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="YOf-NC-z5M"/>

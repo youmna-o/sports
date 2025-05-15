@@ -39,6 +39,9 @@
                 <constraint firstItem="FaU-g7-470" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="eEU-sG-MVC"/>
             </constraints>
             <size key="customSize" width="213" height="154"/>
+            <connections>
+                <outlet property="name" destination="R4i-Rm-mni" id="6qo-zx-8a0"/>
+            </connections>
             <point key="canvasLocation" x="180.91603053435114" y="25.35211267605634"/>
         </collectionViewCell>
     </objects>

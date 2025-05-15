@@ -8,7 +8,8 @@
 import UIKit
 
 class TeamCollectionViewCell: UICollectionViewCell {
-
+    @IBOutlet weak var name: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

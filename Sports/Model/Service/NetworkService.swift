@@ -9,10 +9,47 @@ import Foundation
 import Alamofire
 protocol NetworkSProtocol{
     static func fetchSports(sportType:String,completionHandler:@escaping(LeaguesResponse?)-> Void )
+    
+    static func fetchLeaguesDetails(sportType:String,leaguesKey:String,completionHandler:@escaping(LeaguesDetailsResponse?)-> Void )
 }
-class NetworkService : NetworkSProtocol{
-    static var result : LeaguesResponse?
 
+class NetworkService : NetworkSProtocol{
+    
+    static var result : LeaguesResponse?
+    static var leaguesDetailsResult : LeaguesDetailsResponse?
+
+
+    static func fetchLeaguesDetails(sportType:String,leaguesKey: String, completionHandler: @escaping (LeaguesDetailsResponse?) -> Void) {
+        let url = "https://apiv2.allsportsapi.com/\(sportType)/"
+        let urlParameters: [String: Any] = [
+            "APIkey": "d563ff5053b8ffebbaa19a688960166cb280a840b535413bad65ba3f0c0b662c",
+            "met": "Fixtures",
+            "from":"2024-08-01",
+            "to":"2025-06-30",
+            "leagueId":leaguesKey
+        ]
+        print(" Reached fetchLeaguesDetails function")
+
+        AF.request(url, method: .get, parameters: urlParameters, encoding: URLEncoding.default)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    if let jsonString = String(data: data, encoding: .utf8) {
+                    }
+                    do {
+                        let decoded = try JSONDecoder().decode(LeaguesDetailsResponse.self, from: data)
+                        completionHandler(decoded)
+                    } catch {
+                        print(" Decoding failed: \(error)")
+                        completionHandler(nil)
+                    }
+                case .failure(let error):
+                    print("Network failed: \(error)")
+                    completionHandler(nil)
+                }
+            }
+
+    }
     static func fetchSports(sportType:String,completionHandler: @escaping (LeaguesResponse?) -> Void) {
         let allLeaguesUrl = "https://apiv2.allsportsapi.com/\(sportType)/"
         let allLeaguesParameters: [String: Any] = [
