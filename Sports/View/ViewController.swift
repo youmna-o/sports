@@ -65,16 +65,29 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             cell.sportName.text = "cricket"
         case 3:
             cell.sportImage.image=UIImage(named: "ice-hockey")
-            cell.sportName.text = "hockey"
+            cell.sportName.text = "tennis"
 
         default:
-            cell.sportImage.image=UIImage(named: "football")
+           cell.sportImage.image=UIImage(named: "football")
         }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeaguesScreen") as! LeaguesTableViewController
+        switch indexPath.row{
+          case 0:
+            secondViewController.sportType = "football"
+           case 1:
+            secondViewController.sportType = "basketball"
+            case 2:
+            secondViewController.sportType = "cricket"
+            case 3:
+            secondViewController.sportType = "tennis"
+            
+        default:
+            secondViewController.sportType = "football"
 
+        }
       //  secondViewController.movie = moviesList[indexPath.row]
 
         self.navigationController?.pushViewController(secondViewController, animated: true)
@@ -87,6 +100,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         // Do any additional setup after loading the view.
     }
 

@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qSG-jT-TxW">
-                                <rect key="frame" x="0.0" y="220.66666666666663" width="393" height="511"/>
+                                <rect key="frame" x="0.0" y="220.66666666666666" width="393" height="510.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="393" id="U1u-6k-ofX"/>
-                                    <constraint firstAttribute="height" constant="511" id="b09-rd-UhV"/>
+                                    <constraint firstAttribute="height" priority="250" constant="511" id="b09-rd-UhV"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gOe-Sz-zTu">
                                     <size key="itemSize" width="243" height="284"/>
@@ -84,6 +84,7 @@
                             <constraint firstItem="lTI-e5-KmG" firstAttribute="centerX" secondItem="z9d-Ps-HUi" secondAttribute="centerX" constant="16" id="ViZ-3j-TBQ"/>
                             <constraint firstItem="qSG-jT-TxW" firstAttribute="trailing" secondItem="Y1U-Ej-jyk" secondAttribute="trailing" id="aCl-Sa-5EK"/>
                             <constraint firstItem="qSG-jT-TxW" firstAttribute="centerX" secondItem="z9d-Ps-HUi" secondAttribute="centerX" id="gNP-qO-mYp"/>
+                            <constraint firstItem="qSG-jT-TxW" firstAttribute="top" secondItem="lTI-e5-KmG" secondAttribute="bottom" constant="70.333333333333314" id="pnl-LZ-Uyx"/>
                             <constraint firstItem="qSG-jT-TxW" firstAttribute="centerY" secondItem="Y1U-Ej-jyk" secondAttribute="centerY" constant="40" id="qgH-C8-Pw3"/>
                         </constraints>
                     </view>

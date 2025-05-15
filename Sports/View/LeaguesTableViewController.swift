@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import Kingfisher
 
 class LeaguesTableViewController: UITableViewController {
-
+    var leaguesArray : [League] = []
+    var sportType : String!
+    var leaguesPresenter: LeaguesPresenter!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let nib = UINib(nibName: "LeagueTableCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "leagueTableCell")
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
@@ -27,13 +31,23 @@ class LeaguesTableViewController: UITableViewController {
 
         headerView.addSubview(label)
 
-        tableView.tableHeaderView = headerView        // Uncomment the following line to preserve selection between presentations
+        tableView.tableHeaderView = headerView
+        leaguesPresenter = LeaguesPresenter()
+        leaguesPresenter.attachTableView(tableView: self)
+        leaguesPresenter.getDataFromModel(sportType: sportType)
+        
+        // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+    func renderToView(result : LeaguesResponse){
+        print("All Leagues: \(result.result)")
+
+        leaguesArray = result.result
+        tableView.reloadData()
+    }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
     }
@@ -49,23 +63,32 @@ class LeaguesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return leaguesArray.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.row < leaguesArray.count else {
+            print("Index out of bounds: \(indexPath.row), leaguesArray count: \(leaguesArray.count)")
+            return UITableViewCell() 
+        }
       //  let nib = UINib(nibName: "LeagueTableCell", bundle: nil)
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueTableCell", for: indexPath) as! LeagueTableCell
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
         cell.contentView.layoutMargins = UIEdgeInsets(top: 20, left: 0, bottom: 8, right: 0)
-        // Configure the cell...
+        cell.leagueName.text = leaguesArray[indexPath.row].leagueName
+        let url = URL(string: leaguesArray[indexPath.row].leagueLogo ?? "")
+        cell.leagueImage?.kf.setImage(with: url,
+                                      placeholder: UIImage(named: "basketball"),
+                                      options: [
+                                          .transition(.fade(0.2))
+                                      ])        // Configure the cell...
 
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetails") as! DetailsCollectionViewController
-
         //secondViewController.movie = moviesList[indexPath.row]
 
         self.navigationController?.pushViewController(secondViewController, animated: true)

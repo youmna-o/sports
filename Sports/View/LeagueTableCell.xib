@@ -21,16 +21,16 @@
                         <rect key="frame" x="5" y="5" width="310" height="90"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basketball" translatesAutoresizingMaskIntoConstraints="NO" id="0a4-Ih-cXi">
-                                <rect key="frame" x="8" y="12.666666666666671" width="110" height="65"/>
+                                <rect key="frame" x="8" y="13" width="103" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="110" id="1F2-Y2-KOo"/>
-                                    <constraint firstAttribute="height" constant="65" id="TsU-hr-Vdu"/>
+                                    <constraint firstAttribute="width" constant="103" id="1F2-Y2-KOo"/>
+                                    <constraint firstAttribute="height" constant="64" id="TsU-hr-Vdu"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="European Championsship" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvj-Hb-7eC">
-                                <rect key="frame" x="110.00000000000001" y="21.666666666666671" width="194.33333333333337" height="47"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="European Championsship" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvj-Hb-7eC">
+                                <rect key="frame" x="126" y="22" width="178" height="47"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" priority="250" constant="200" id="GiP-3R-Vil"/>
+                                    <constraint firstAttribute="width" priority="250" constant="178" id="GiP-3R-Vil"/>
                                     <constraint firstAttribute="height" constant="47" id="Mvt-xd-4XB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -42,7 +42,7 @@
                         <constraints>
                             <constraint firstItem="0a4-Ih-cXi" firstAttribute="centerY" secondItem="Fk8-hR-lmT" secondAttribute="centerY" id="1TK-GL-BRl"/>
                             <constraint firstItem="tvj-Hb-7eC" firstAttribute="centerY" secondItem="Fk8-hR-lmT" secondAttribute="centerY" id="4SV-TL-KTx"/>
-                            <constraint firstItem="tvj-Hb-7eC" firstAttribute="leading" secondItem="0a4-Ih-cXi" secondAttribute="trailing" constant="-8" id="7cg-ni-c4T"/>
+                            <constraint firstItem="tvj-Hb-7eC" firstAttribute="leading" secondItem="0a4-Ih-cXi" secondAttribute="trailing" constant="15" id="7cg-ni-c4T"/>
                             <constraint firstItem="0a4-Ih-cXi" firstAttribute="leading" secondItem="Fk8-hR-lmT" secondAttribute="leading" constant="8" id="oL1-7S-9Go"/>
                         </constraints>
                     </view>
