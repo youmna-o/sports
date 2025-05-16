@@ -6,3 +6,7 @@
 //
 
 import Foundation
+struct TennisResponse: Codable {
+    let success: Int
+    let result: [Tennis]
+}

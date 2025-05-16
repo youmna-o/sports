@@ -26,9 +26,14 @@ class NetworkService : NetworkSProtocol{
             "APIkey": "d563ff5053b8ffebbaa19a688960166cb280a840b535413bad65ba3f0c0b662c",
             "met": "Fixtures",
             "from": "2024-08-01",
-            "to": "2025-06-30",
-//            "from": "2025-04-25",
-//         "to": "2025-06-1",
+            "to": "2025-08-30",
+            
+//            "from": "2025-05-1",
+//         "to": "2025-05-3",
+            
+//            "from": "2025-05-01",
+//                   "to": "2025-05-30",
+            
             "leagueId": leaguesKey
         ]
         
@@ -36,9 +41,9 @@ class NetworkService : NetworkSProtocol{
             .responseData { response in
                 switch response.result {
                 case .success(let data):
-                    if let jsonString = String(data: data, encoding: .utf8) {
-                                   print("Response JSON: \(jsonString)")
-                               }
+//                    if let jsonString = String(data: data, encoding: .utf8) {
+//                                   print("Response JSON: \(jsonString)")
+//                               }
                     do {
                         switch sportType {
                         case "football":
@@ -49,6 +54,10 @@ class NetworkService : NetworkSProtocol{
                             completionHandler(decoded)
                         case "basketball":
                             let decoded = try JSONDecoder().decode(BasketballResponse.self, from: data)
+                            completionHandler(decoded)
+                            
+                        case "tennis":
+                            let decoded = try JSONDecoder().decode(TennisResponse.self, from: data)
                             completionHandler(decoded)
                         default:
                             print("Unsupported sportType")

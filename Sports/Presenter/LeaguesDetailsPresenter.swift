@@ -25,6 +25,10 @@ class LeaguesDetailsPresenter {
                     if let basketResult = res as? BasketballResponse {
                         self.myCollection?.renderBasketball(result: basketResult)
                     }
+                case "tennis":
+                    if let tennisResult = res as? TennisResponse {
+                        self.myCollection?.renderTennis(result: tennisResult)
+                    }
                 default:
                     print("Unsupported sport type: \(sportType)")
                 }

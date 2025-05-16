@@ -8,15 +8,18 @@ class DetailsCollectionViewController: UICollectionViewController  {
     var latestEvents: [Event] = []
     var teams: [Team] = []
 //done
-//    var sportType = "football"
-//    var leaguesKey = "207"
+    var sportType = "football"
+    var leaguesKey = "207"
     
 //    var sportType = "cricket"
 //      var leaguesKey = "745"
+//
+//        var sportType = "basketball"
+//          var leaguesKey = "1153"
     
-        var sportType = "basketball"
-          var leaguesKey = "1153"
-    
+//             var sportType = "tennis"
+//             var leaguesKey = "2207"
+    //var leaguesKey ="11072"
     
     var leaguesDetailsPresenter: LeaguesDetailsPresenter!
     
@@ -102,6 +105,22 @@ class DetailsCollectionViewController: UICollectionViewController  {
         }
         renderCommon(details: events)
    }
+    func renderTennis(result: TennisResponse) {
+        let matches = result.result
+        let events = matches.map {
+            Event(
+                eventDate: $0.eventDate,
+                eventHomeTeam: $0.eventFirstPlayer,
+                eventAwayTeam: $0.eventSecondPlayer,
+                homeTeamLogo: $0.eventFirstPlayerLogo ?? "",
+                awayTeamLogo: $0.eventSecondPlayerLogo ?? "",
+                eventTime: $0.eventTime
+            )
+        }
+        renderCommon(details: events)
+    }
+
+
     
     func renderCommon(details: [Event]) {
         let dateFormatter = DateFormatter()
@@ -157,9 +176,9 @@ class DetailsCollectionViewController: UICollectionViewController  {
             let detail = upcomingEvents[indexPath.row]
             cell.date.text = detail.eventDate
             cell.lable1.text = detail.eventHomeTeam
-            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo), placeholder: UIImage(named: "football"))
+            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo), placeholder: UIImage(named: "basketball"))
             cell.lable2.text = detail.eventAwayTeam
-            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo), placeholder: UIImage(named: "football"))
+            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo), placeholder: UIImage(named: "basketball"))
             cell.time.text = detail.eventTime
             styleCell(cell)
             return cell
@@ -169,9 +188,9 @@ class DetailsCollectionViewController: UICollectionViewController  {
             let detail = latestEvents[indexPath.row]
             cell.date.text = detail.eventDate
             cell.lable1.text = detail.eventHomeTeam
-            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo), placeholder: UIImage(named: "football"))
+            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo), placeholder: UIImage(named: "basketball"))
             cell.lable2.text = detail.eventAwayTeam
-            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo), placeholder: UIImage(named: "football"))
+            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo), placeholder: UIImage(named: "basketball"))
             cell.time.text = detail.eventTime
             styleCell(cell)
             return cell
@@ -180,7 +199,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: nibTeamreuseIdentifier, for: indexPath) as! TeamCollectionViewCell
             let team = teams[indexPath.row]
             cell2.name.text = team.teamName
-            cell2.img.kf.setImage(with: URL(string: team.teamLogo), placeholder: UIImage(named: "football"))
+            cell2.img.kf.setImage(with: URL(string: team.teamLogo), placeholder: UIImage(named: "basketball"))
             styleCell(cell2)
             return cell2
             
