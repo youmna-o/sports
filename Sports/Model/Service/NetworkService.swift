@@ -27,6 +27,8 @@ class NetworkService : NetworkSProtocol{
             "met": "Fixtures",
             "from": "2024-08-01",
             "to": "2025-06-30",
+//            "from": "2025-04-25",
+//         "to": "2025-06-1",
             "leagueId": leaguesKey
         ]
         
@@ -34,6 +36,9 @@ class NetworkService : NetworkSProtocol{
             .responseData { response in
                 switch response.result {
                 case .success(let data):
+                    if let jsonString = String(data: data, encoding: .utf8) {
+                                   print("Response JSON: \(jsonString)")
+                               }
                     do {
                         switch sportType {
                         case "football":
@@ -41,6 +46,9 @@ class NetworkService : NetworkSProtocol{
                             completionHandler(decoded)
                         case "cricket":
                             let decoded = try JSONDecoder().decode(CricketResponse.self, from: data)
+                            completionHandler(decoded)
+                        case "basketball":
+                            let decoded = try JSONDecoder().decode(BasketballResponse.self, from: data)
                             completionHandler(decoded)
                         default:
                             print("Unsupported sportType")

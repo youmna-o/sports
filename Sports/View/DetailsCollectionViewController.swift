@@ -11,8 +11,12 @@ class DetailsCollectionViewController: UICollectionViewController  {
 //    var sportType = "football"
 //    var leaguesKey = "207"
     
-    var sportType = "cricket"
-      var leaguesKey = "745"
+//    var sportType = "cricket"
+//      var leaguesKey = "745"
+    
+        var sportType = "basketball"
+          var leaguesKey = "1153"
+    
     
     var leaguesDetailsPresenter: LeaguesDetailsPresenter!
     
@@ -86,6 +90,18 @@ class DetailsCollectionViewController: UICollectionViewController  {
         }
         renderCommon(details: events)
     }
+    func renderBasketball(result: BasketballResponse) {
+        let details = result.result
+        let events = details.map {
+            Event(eventDate: $0.eventDate,
+                        eventHomeTeam: $0.eventHomeTeam,
+                        eventAwayTeam: $0.eventAwayTeam,
+                  homeTeamLogo: $0.eventHomeTeamLogo ?? "",
+                  awayTeamLogo: $0.eventAwayTeamLogo ?? "",
+                        eventTime: $0.eventTime)
+        }
+        renderCommon(details: events)
+   }
     
     func renderCommon(details: [Event]) {
         let dateFormatter = DateFormatter()
