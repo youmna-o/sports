@@ -17,6 +17,8 @@ class DetailsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image1: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
+   //     lable1.lineBreakMode = .byTruncatingTail
+//        lable2.lineBreakMode = .byTruncatingTail
         image1.layer.cornerRadius = image1.frame.width / 2
             image1.layer.masksToBounds = true
             

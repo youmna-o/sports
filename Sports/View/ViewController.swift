@@ -106,61 +106,58 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        fetchDataFromJSON { response in
-            DispatchQueue.main.async {
-                if let data = response {
-                    self.result = data
-                    print("✅ Data fetched successfully: \(data)")
-
-                    // لو عايزة تطبعي عنصر معين للتأكد
-                    print("Number of results: \(data.result?.count ?? 0)")
-                    
-                    // لو هتستخدمها في جدول أو كوليكشن اعملي reload
-                    // self.collectionView.reloadData()
-                } else {
-                    print("❌ Failed to fetch or decode data")
-                }
-            }
-        }
+//        fetchDataFromJSON { response in
+//            DispatchQueue.main.async {
+//                if let data = response {
+//                    self.result = data
+//                    print("✅ Data fetched successfully: \(data)")
+//
+//                    print("Number of results: \(data.result?.count ?? 0)")
+//
+//                    // self.collectionView.reloadData()
+//                } else {
+//                    print("❌ Failed to fetch or decode data")
+//                }
+//            }
+//        }
 
     }
 
-    // نقل الفنكشن برا viewDidLoad
-    func fetchDataFromJSON(completionHandler: @escaping (LeaguesDetailsResponse?) -> Void) {
-        let urlString = "https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=0e577c9dd1e799ad376e436f569ed8f787aa178035c782cc6921d2f58af172ab&from=2025-05-13&to=2025-05-17&leagueId=207"
-        
-        guard let url = URL(string: urlString) else {
-            print("❌ Invalid URL")
-            completionHandler(nil)
-            return
-        }
-        
-        let request = URLRequest(url: url)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("❌ Error during request: \(error.localizedDescription)")
-                completionHandler(nil)
-                return
-            }
-            
-            guard let data = data else {
-                print("❌ No data received")
-                completionHandler(nil)
-                return
-            }
-            
-            do {
-                let decodedData = try JSONDecoder().decode(LeaguesDetailsResponse.self, from: data)
-                completionHandler(decodedData)
-            } catch {
-                print("❌ Decoding error: \(error)")
-                completionHandler(nil)
-            }
-        }
-        
-        task.resume()
-    }
+//    func fetchDataFromJSON(completionHandler: @escaping (LeaguesDetailsResponse?) -> Void) {
+//        let urlString = "https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=0e577c9dd1e799ad376e436f569ed8f787aa178035c782cc6921d2f58af172ab&from=2025-05-13&to=2025-05-17&leagueId=207"
+//
+//        guard let url = URL(string: urlString) else {
+//            print("❌ Invalid URL")
+//            completionHandler(nil)
+//            return
+//        }
+//
+//        let request = URLRequest(url: url)
+//
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                print("❌ Error during request: \(error.localizedDescription)")
+//                completionHandler(nil)
+//                return
+//            }
+//
+//            guard let data = data else {
+//                print("❌ No data received")
+//                completionHandler(nil)
+//                return
+//            }
+//
+//            do {
+//                let decodedData = try JSONDecoder().decode(LeaguesDetailsResponse.self, from: data)
+//                completionHandler(decodedData)
+//            } catch {
+//                print("❌ Decoding error: \(error)")
+//                completionHandler(nil)
+//            }
+//        }
+//
+//        task.resume()
+//    }
          
 
 

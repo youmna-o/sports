@@ -1,16 +1,19 @@
 import UIKit
+
 private let nibreuseIdentifier = "detailsNib"
 private let nibTeamreuseIdentifier = "teamCell"
 
 class DetailsCollectionViewController: UICollectionViewController  {
-    //var leaguesDetailsArray: [LeaguesDetails] = []
-    var upcomingEvents: [LeaguesDetails] = []
-    var latestEvents: [LeaguesDetails] = []
+    var upcomingEvents: [Event] = []
+    var latestEvents: [Event] = []
     var teams: [Team] = []
-    var sportType = "football"
-    var leaguesKey = "207"
-//    var sportType = "basketball"
-//    var leaguesKey = "41223"
+//done
+//    var sportType = "football"
+//    var leaguesKey = "207"
+    
+    var sportType = "cricket"
+      var leaguesKey = "745"
+    
     var leaguesDetailsPresenter: LeaguesDetailsPresenter!
     
     let sectionTitles = ["upcoming", "latest", "teams"]
@@ -56,52 +59,67 @@ class DetailsCollectionViewController: UICollectionViewController  {
     }
     
     @objc func addNew() {
-        // Add action implementation here if needed
     }
-    func renderToView(result: LeaguesDetailsResponse) {
+
+    func renderFootball(result: LeaguesDetailsResponse) {
         let details = result.result ?? []
-        
+        let events = details.map {
+            Event(eventDate: $0.eventDate,
+                  eventHomeTeam: $0.eventHomeTeam,
+                  eventAwayTeam: $0.eventAwayTeam,
+                  homeTeamLogo: $0.homeTeamLogo,
+                  awayTeamLogo: $0.awayTeamLogo,
+                  eventTime: $0.eventTime)
+        }
+        renderCommon(details: events)
+    }
+    
+    func renderCricket(result: CricketResponse) {
+        let details = result.result ?? []
+        let events = details.map {
+            Event(eventDate: $0.eventDateStart,
+                        eventHomeTeam: $0.eventHomeTeam,
+                        eventAwayTeam: $0.eventAwayTeam,
+                  homeTeamLogo: $0.eventHomeTeamLogo ?? "",
+                  awayTeamLogo: $0.eventAwayTeamLogo ?? "",
+                        eventTime: $0.eventTime)
+        }
+        renderCommon(details: events)
+    }
+    
+    func renderCommon(details: [Event]) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
         let currentDate = Date()
         
         upcomingEvents = details.filter {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
             if let date = dateFormatter.date(from: $0.eventDate) {
-                return date >= Date()
+                return date >= currentDate
             }
             return false
         }
-
+        
         latestEvents = details.filter {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
             if let date = dateFormatter.date(from: $0.eventDate) {
-                return date < Date()
+                return date < currentDate
             }
             return false
         }
+        
         var teamSet = Set<String>()
-            teams.removeAll()
-            for event in details {
-                if !teamSet.contains(event.eventHomeTeam) {
-                    teamSet.insert(event.eventHomeTeam)
-                    teams.append(Team(teamName: event.eventHomeTeam, teamLogo: event.homeTeamLogo))
-                }
-                if !teamSet.contains(event.eventAwayTeam) {
-                    teamSet.insert(event.eventAwayTeam)
-                    teams.append(Team(teamName: event.eventAwayTeam, teamLogo: event.awayTeamLogo))
-                }
+        teams.removeAll()
+        for event in details {
+            if !teamSet.contains(event.eventHomeTeam) {
+                teamSet.insert(event.eventHomeTeam)
+                teams.append(Team(teamName: event.eventHomeTeam, teamLogo: event.homeTeamLogo))
             }
-
+            if !teamSet.contains(event.eventAwayTeam) {
+                teamSet.insert(event.eventAwayTeam)
+                teams.append(Team(teamName: event.eventAwayTeam, teamLogo: event.awayTeamLogo))
+            }
+        }
         collectionView.reloadData()
     }
-
-
-    
-    // MARK: - UICollectionViewDataSource
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
@@ -109,17 +127,12 @@ class DetailsCollectionViewController: UICollectionViewController  {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return upcomingEvents.count
-        case 1:
-            return latestEvents.count
-        case 2:
-            return teams.count
-        default:
-            return 0
+        case 0: return upcomingEvents.count
+        case 1: return latestEvents.count
+        case 2: return teams.count
+        default: return 0
         }
     }
-
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
@@ -128,14 +141,10 @@ class DetailsCollectionViewController: UICollectionViewController  {
             let detail = upcomingEvents[indexPath.row]
             cell.date.text = detail.eventDate
             cell.lable1.text = detail.eventHomeTeam
-            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo),
-                              placeholder: UIImage(named: "football"))
+            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo), placeholder: UIImage(named: "football"))
             cell.lable2.text = detail.eventAwayTeam
-            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo),
-                              placeholder: UIImage(named: "football"))
-
-            cell.time.text=detail.eventTime
-
+            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo), placeholder: UIImage(named: "football"))
+            cell.time.text = detail.eventTime
             styleCell(cell)
             return cell
             
@@ -144,13 +153,10 @@ class DetailsCollectionViewController: UICollectionViewController  {
             let detail = latestEvents[indexPath.row]
             cell.date.text = detail.eventDate
             cell.lable1.text = detail.eventHomeTeam
-            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo),
-                              placeholder: UIImage(named: "football"))
+            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo), placeholder: UIImage(named: "football"))
             cell.lable2.text = detail.eventAwayTeam
-            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo),
-                              placeholder: UIImage(named: "football"))
-
-            cell.time.text=detail.eventTime
+            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo), placeholder: UIImage(named: "football"))
+            cell.time.text = detail.eventTime
             styleCell(cell)
             return cell
             
@@ -161,7 +167,6 @@ class DetailsCollectionViewController: UICollectionViewController  {
             cell2.img.kf.setImage(with: URL(string: team.teamLogo), placeholder: UIImage(named: "football"))
             styleCell(cell2)
             return cell2
-
             
         default:
             fatalError("Unexpected section")
@@ -191,13 +196,11 @@ class DetailsCollectionViewController: UICollectionViewController  {
         }
         return UICollectionReusableView()
     }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 2:
+        if indexPath.section == 2 {
             let selectedTeam = teams[indexPath.row]
             print("Team Name: \(selectedTeam.teamName)")
-        default:
-            break
         }
     }
 }

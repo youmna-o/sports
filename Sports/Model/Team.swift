@@ -12,7 +12,5 @@ struct Team{
     let teamName: String
     let teamLogo: String
     
-
-    
 }
 

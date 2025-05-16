@@ -1,26 +1,30 @@
-//
-//  LeaguesDetailsPresenter.swift
-//  Sports
-//
-//  Created by Macos on 15/05/2025.
-//
+import UIKit
 
-import Foundation
-class LeaguesDetailsPresenter{
-   weak var myCollection : DetailsCollectionViewController!
+class LeaguesDetailsPresenter {
+    weak var myCollection : DetailsCollectionViewController!
+    
     func attachTableView(collectionView: DetailsCollectionViewController){
         myCollection = collectionView
     }
+    
     func getDataFromModel(sportType: String, leaguesKey: String) {
         NetworkService.fetchLeaguesDetails(sportType: sportType, leaguesKey: leaguesKey) { [weak self] res in
             DispatchQueue.main.async {
-                guard let result = res else {
-                    print(" No data returned from API.")
-                    return
+                guard let self = self else { return }
+                
+                switch sportType {
+                case "football":
+                    if let footballResult = res as? LeaguesDetailsResponse {
+                        self.myCollection?.renderFootball(result: footballResult)
+                    }
+                case "cricket":
+                    if let cricketResult = res as? CricketResponse {
+                        self.myCollection?.renderCricket(result: cricketResult)
+                    }
+                default:
+                    print("Unsupported sport type: \(sportType)")
                 }
-                self?.myCollection?.renderToView(result: result)
             }
         }
     }
-
 }
