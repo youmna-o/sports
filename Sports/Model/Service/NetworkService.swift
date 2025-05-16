@@ -11,6 +11,8 @@ protocol NetworkSProtocol{
     static func fetchSports(sportType:String,completionHandler:@escaping(LeaguesResponse?)-> Void )
     
     static func fetchLeaguesDetails(sportType:String,leaguesKey:String,completionHandler:@escaping(LeaguesDetailsResponse?)-> Void )
+    
+    
 }
 
 class NetworkService : NetworkSProtocol{

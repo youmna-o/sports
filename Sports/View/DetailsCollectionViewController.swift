@@ -2,15 +2,15 @@ import UIKit
 private let nibreuseIdentifier = "detailsNib"
 private let nibTeamreuseIdentifier = "teamCell"
 
-class DetailsCollectionViewController: UICollectionViewController {
+class DetailsCollectionViewController: UICollectionViewController  {
     //var leaguesDetailsArray: [LeaguesDetails] = []
     var upcomingEvents: [LeaguesDetails] = []
     var latestEvents: [LeaguesDetails] = []
-   // var teams: [TeamModel] = []
-//    var sportType = "football"
-//    var leaguesKey = "207"
-    var sportType = "basketball"
-    var leaguesKey = "41223"
+    var teams: [Team] = []
+    var sportType = "football"
+    var leaguesKey = "207"
+//    var sportType = "basketball"
+//    var leaguesKey = "41223"
     var leaguesDetailsPresenter: LeaguesDetailsPresenter!
     
     let sectionTitles = ["upcoming", "latest", "teams"]
@@ -83,6 +83,18 @@ class DetailsCollectionViewController: UICollectionViewController {
             }
             return false
         }
+        var teamSet = Set<String>()
+            teams.removeAll()
+            for event in details {
+                if !teamSet.contains(event.eventHomeTeam) {
+                    teamSet.insert(event.eventHomeTeam)
+                    teams.append(Team(teamName: event.eventHomeTeam, teamLogo: event.homeTeamLogo))
+                }
+                if !teamSet.contains(event.eventAwayTeam) {
+                    teamSet.insert(event.eventAwayTeam)
+                    teams.append(Team(teamName: event.eventAwayTeam, teamLogo: event.awayTeamLogo))
+                }
+            }
 
         collectionView.reloadData()
     }
@@ -102,8 +114,7 @@ class DetailsCollectionViewController: UICollectionViewController {
         case 1:
             return latestEvents.count
         case 2:
-            return 5
-         //   return teams.count
+            return teams.count
         default:
             return 0
         }
@@ -145,10 +156,12 @@ class DetailsCollectionViewController: UICollectionViewController {
             
         case 2:
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: nibTeamreuseIdentifier, for: indexPath) as! TeamCollectionViewCell
-//            let team = teams[indexPath.row]
-//            cell2.teamNameLabel.text = team.name // افترض وجود label
+            let team = teams[indexPath.row]
+            cell2.name.text = team.teamName
+            cell2.img.kf.setImage(with: URL(string: team.teamLogo), placeholder: UIImage(named: "football"))
             styleCell(cell2)
             return cell2
+
             
         default:
             fatalError("Unexpected section")
@@ -177,5 +190,14 @@ class DetailsCollectionViewController: UICollectionViewController {
             return header
         }
         return UICollectionReusableView()
+    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 2:
+            let selectedTeam = teams[indexPath.row]
+            print("Team Name: \(selectedTeam.teamName)")
+        default:
+            break
+        }
     }
 }
