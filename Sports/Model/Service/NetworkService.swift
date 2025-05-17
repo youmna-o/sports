@@ -19,7 +19,7 @@ class NetworkService : NetworkSProtocol{
             "APIkey": "d563ff5053b8ffebbaa19a688960166cb280a840b535413bad65ba3f0c0b662c",
             "met": "Leagues",
         ]
-
+        print("Final URL: \(allLeaguesUrl)?\(allLeaguesParameters)")
         AF.request(allLeaguesUrl, method: .get, parameters: allLeaguesParameters, encoding: URLEncoding.default) 
             .responseDecodable(of: LeaguesResponse.self) { response in
                 switch response.result {

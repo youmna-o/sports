@@ -13,8 +13,10 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct League: Codable {
-    let leagueKey , countryKey: Int
-    let leagueName, countryName: String
+    let leagueKey:  Int
+    let countryKey: Int?
+    let leagueName: String
+    let countryName: String?
     
     let leagueLogo, countryLogo: String?
 

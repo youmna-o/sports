@@ -11,11 +11,14 @@ class LeaguesPresenter{
     func attachTableView(tableView: LeaguesTableViewController){
         myTable = tableView
     }
-    func getDataFromModel(sportType:String){
-        NetworkService.fetchSports(sportType: sportType){[weak self] res in
+    func getDataFromModel(sportType: String) {
+        NetworkService.fetchSports(sportType: sportType) { [weak self] res in
             DispatchQueue.main.async {
-                self?.myTable.renderToView(result : res!)
-
+                guard let leagues = res else {
+                    print("No leagues found for \(sportType)")
+                    return
+                }
+                self?.myTable.renderToView(result: leagues) // Safe: `leagues` is non-optional
             }
         }
     }

@@ -24,7 +24,7 @@ class LeaguesTableViewController: UITableViewController {
         headerView.backgroundColor = .white
 
         let label = UILabel(frame: headerView.bounds)
-        label.text = "Football Leagues"
+        label.text = "\(sportType.capitalized ?? "") Leagues"
         label.textAlignment = .center
        // label.textColor = UIColor(hex: "#1560BD")
         label.font = UIFont.systemFont(ofSize: 24)
@@ -43,10 +43,13 @@ class LeaguesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     func renderToView(result : LeaguesResponse){
-        print("All Leagues: \(result.result)")
+        print("All Leagues: \(result.result.count)")
 
         leaguesArray = result.result
         tableView.reloadData()
+        if leaguesArray.isEmpty {
+            print("No leagues found for \(sportType!). Displaying empty table.")
+        }
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
@@ -80,7 +83,7 @@ class LeaguesTableViewController: UITableViewController {
         cell.leagueName.text = leaguesArray[indexPath.row].leagueName
         let url = URL(string: leaguesArray[indexPath.row].leagueLogo ?? "")
         cell.leagueImage?.kf.setImage(with: url,
-                                      placeholder: UIImage(named: "basketball"),
+                                      placeholder: UIImage(named: "league2"),
                                       options: [
                                           .transition(.fade(0.2))
                                       ])        // Configure the cell...
