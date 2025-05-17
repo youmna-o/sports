@@ -4,6 +4,14 @@ private let nibreuseIdentifier = "detailsNib"
 private let nibTeamreuseIdentifier = "teamCell"
 
 class DetailsCollectionViewController: UICollectionViewController  {
+    
+    //from prev
+    var sportType : String!
+    var leaguesKey : String!
+    var leagueName : String!
+    var leagueLogo : String!
+
+
     var upcomingEvents: [Event] = []
     var latestEvents: [Event] = []
     var teams: [Team] = []
@@ -14,12 +22,15 @@ class DetailsCollectionViewController: UICollectionViewController  {
 //    var sportType = "cricket"
 //      var leaguesKey = "745"
 //
-//        var sportType = "basketball"
-//          var leaguesKey = "1153"
+//      var sportType = "basketball"
+//      var leaguesKey = "1153"
     
-             var sportType = "tennis"
-             var leaguesKey = "2207"
-    //var leaguesKey ="11072"
+//    sportType = "tennis"
+//    leaguesKey = "2207"
+    
+      //var leaguesKey ="11072"
+    
+      
     
     var leaguesDetailsPresenter: LeaguesDetailsPresenter!
     
@@ -28,6 +39,11 @@ class DetailsCollectionViewController: UICollectionViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sportType = "tennis"
+        leaguesKey = "2207"
+         leagueName = "Serie A"
+         leagueLogo = "https://apiv2.allsportsapi.com//logo//logo_leagues//207_serie-a.png"
         
         leaguesDetailsPresenter = LeaguesDetailsPresenter()
         leaguesDetailsPresenter.attachTableView(collectionView: self)
@@ -66,8 +82,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
     }
     
     @objc func addNew() {
-        leaguesDetailsPresenter.addDataToModel()
-        //leaguesDetailsPresenter.getDataFromModel()
+        leaguesDetailsPresenter.addDataToModel(name:leagueName , image:leagueLogo)
     }
 
     func renderFootball(result: LeaguesDetailsResponse) {

@@ -39,11 +39,11 @@ class LeaguesDetailsPresenter {
             }
         }
     }
-    func addDataToModel(){
-        coreObj.addLeague(name: "Egypt",image: "A")
+    func addDataToModel(name:String , image:String){
+        coreObj.addLeague(name: name,image: image)
     }
-    func getDataFromModel(){
-        coreObj.getLeague{  obj in
-            print("recived********")}
-    }
+//    func getDataFromModel(){
+//        coreObj.getLeague{  obj in
+//            print("recived********")}
+//    }
 }
