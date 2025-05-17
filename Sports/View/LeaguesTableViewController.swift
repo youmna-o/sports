@@ -43,7 +43,8 @@ class LeaguesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     func renderToView(result : LeaguesResponse){
-        print("All Leagues: \(result.result.count)")
+
+        //print("All Leagues: \(result.result)")
 
         leaguesArray = result.result
         tableView.reloadData()

@@ -27,6 +27,8 @@ extension UIColor {
 private let reuseIdentifier = "sportCell"
 
 class ViewController: UIViewController , UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    var result: LeaguesDetailsResponse?
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         4
     }
@@ -70,6 +72,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         default:
            cell.sportImage.image=UIImage(named: "football")
         }
+        print("************************")
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -103,8 +106,9 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         self.navigationItem.hidesBackButton = true
 
         
-        // Do any additional setup after loading the view.
+
     }
+         
 
 
 }
