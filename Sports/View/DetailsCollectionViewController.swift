@@ -8,17 +8,17 @@ class DetailsCollectionViewController: UICollectionViewController  {
     var latestEvents: [Event] = []
     var teams: [Team] = []
 //done
-    var sportType = "football"
-    var leaguesKey = "207"
-    
+//    var sportType = "football"
+//    var leaguesKey = "207"
+//    
 //    var sportType = "cricket"
 //      var leaguesKey = "745"
 //
 //        var sportType = "basketball"
 //          var leaguesKey = "1153"
     
-//             var sportType = "tennis"
-//             var leaguesKey = "2207"
+             var sportType = "tennis"
+             var leaguesKey = "2207"
     //var leaguesKey ="11072"
     
     var leaguesDetailsPresenter: LeaguesDetailsPresenter!
@@ -66,6 +66,8 @@ class DetailsCollectionViewController: UICollectionViewController  {
     }
     
     @objc func addNew() {
+        leaguesDetailsPresenter.addDataToModel()
+        //leaguesDetailsPresenter.getDataFromModel()
     }
 
     func renderFootball(result: LeaguesDetailsResponse) {
