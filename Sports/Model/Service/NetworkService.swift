@@ -12,10 +12,33 @@ protocol NetworkSProtocol{
     
     static func fetchLeaguesDetails(sportType:String,leaguesKey:String,completionHandler:@escaping(Any?)-> Void )
     
+  static func fetchPlayers(sportType:String,teamName:String, completionHandler:@escaping(TeamPlayersResponse?)-> Void )
+    
     
 }
 
 class NetworkService : NetworkSProtocol{
+    static func fetchPlayers(sportType: String,teamName:String , completionHandler: @escaping (TeamPlayersResponse?) -> Void) {
+        let allPlayersURL = "https://apiv2.allsportsapi.com/\(sportType)/"
+        let allPlayersParameters: [String: Any] = [
+            "APIkey": "d563ff5053b8ffebbaa19a688960166cb280a840b535413bad65ba3f0c0b662c",
+            "met": "Players",
+            "teamName": teamName
+        ]
+        //print("Final URL: \(allPlayersURL)?\(allPlayersParameters)")
+        AF.request(allPlayersURL, method: .get, parameters: allPlayersParameters, encoding: URLEncoding.default)
+            .responseDecodable(of: TeamPlayersResponse.self) { response in
+                switch response.result {
+                case .success(let players):
+                    completionHandler(players)
+                    print("Leagues fetched successfully")
+                case .failure(let error):
+                    completionHandler(nil)
+                    print("Error fetching leagues: \(error)")
+                }
+            }
+    }
+    
     
     static var result : LeaguesResponse?
     static var leaguesDetailsResult : LeaguesDetailsResponse?

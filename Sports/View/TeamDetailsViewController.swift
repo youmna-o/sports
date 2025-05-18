@@ -8,10 +8,15 @@
 import UIKit
 
 class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var playersArray : [Player] = []
+    var sportType : String!
+    var teamPlayersPresenter: TeamPlayersPresenter!
+    var teamName :String!
+
     @IBOutlet weak var teamTable: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        playersArray.count
     }
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
@@ -26,8 +31,16 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
-    
+    func renderToView(result : TeamPlayersResponse){
 
+        //print("All Leagues: \(result.result)")
+
+        playersArray = result.players
+        teamTable.reloadData()
+        if playersArray.isEmpty {
+            print("No leagues found for \(sportType!). Displaying empty table.")
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "PlayerTableViewCell", bundle: nil)
@@ -37,6 +50,9 @@ class TeamDetailsViewController: UIViewController, UITableViewDelegate, UITableV
         teamTable.separatorStyle = .none
         teamTable.delegate = self
         teamTable.dataSource = self
+        teamPlayersPresenter = TeamPlayersPresenter()
+        teamPlayersPresenter.attachTableView(tableView: self)
+        teamPlayersPresenter.getDataFromModel(sportType: sportType, teamName: teamName)
 //        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 50))
 //        headerView.backgroundColor = .white
 //

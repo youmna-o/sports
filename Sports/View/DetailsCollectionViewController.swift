@@ -235,6 +235,13 @@ class DetailsCollectionViewController: UICollectionViewController  {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
             let selectedTeam = teams[indexPath.row]
+            let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetails") as! TeamDetailsViewController
+            secondViewController.sportType = sportType
+            secondViewController.teamName = teams[indexPath.row].teamName          // secondViewController.movie = moviesList[indexPath.row]
+
+            self.navigationController?.pushViewController(secondViewController, animated: true)
+
+            
             print("Team Name: \(selectedTeam.teamName)")
         }
     }

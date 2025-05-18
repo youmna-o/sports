@@ -104,6 +104,11 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="innerView" destination="2Hh-5D-687" id="PgT-1F-kkb"/>
+                <outlet property="playerImage" destination="nw0-wm-UnN" id="22D-VJ-bgZ"/>
+                <outlet property="playerName" destination="0Q6-Rk-Ayc" id="F88-sD-g2q"/>
+                <outlet property="playerNumber" destination="ZDP-pX-5QN" id="I0s-Zp-yP5"/>
+                <outlet property="playerPosition" destination="baW-us-nrw" id="g62-sx-1qB"/>
+                <outlet property="playerRating" destination="Pxv-eB-Fhb" id="eeC-j7-Ow9"/>
             </connections>
             <point key="canvasLocation" x="151.14503816793894" y="-7.394366197183099"/>
         </tableViewCell>
