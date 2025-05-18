@@ -40,8 +40,10 @@ class DetailsCollectionViewController: UICollectionViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sportType = "tennis"
-        leaguesKey = "2207"
+            var sportType = "football"
+            var leaguesKey = "207"
+//        sportType = "tennis"
+//        leaguesKey = "2207"
          leagueName = "Serie A"
          leagueLogo = "https://apiv2.allsportsapi.com//logo//logo_leagues//207_serie-a.png"
         
