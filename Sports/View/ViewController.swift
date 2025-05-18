@@ -36,7 +36,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         let numberOfItemsPerRow: CGFloat = 2
         let spacing: CGFloat = 16
         let totalSpacing = (numberOfItemsPerRow - 1) * spacing
-        let sectionInsets = CGFloat(30 * 2) 
+        let sectionInsets = CGFloat(30 * 2)
         let availableWidth = collectionView.bounds.width - totalSpacing - sectionInsets
         let itemWidth = floor(availableWidth / numberOfItemsPerRow)
         return CGSize(width: itemWidth, height: 200)
@@ -66,13 +66,13 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             cell.sportImage.image=UIImage(named: "cricket")
             cell.sportName.text = "cricket"
         case 3:
-            cell.sportImage.image=UIImage(named: "ice-hockey")
+            cell.sportImage.image=UIImage(named: "tennis")
             cell.sportName.text = "tennis"
 
         default:
            cell.sportImage.image=UIImage(named: "football")
         }
-        print("************************")
+        print("********")
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -101,16 +101,14 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         collectionView.delegate = self
         collectionView.dataSource = self
+        self.navigationItem.hidesBackButton = true
+
         
 
     }
-
-
          
 
 
 }
-
