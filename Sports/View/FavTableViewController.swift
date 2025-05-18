@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import CoreData
+import Kingfisher
 
 class FavTableViewController: UITableViewController {
+
+    var context : NSManagedObjectContext!
+    var entity : NSEntityDescription!
+    var favArr : [LeagueCoreDataModel] = []
+    var favPresenter = FavPresenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +34,17 @@ class FavTableViewController: UITableViewController {
 
         headerView.addSubview(label)
 
-        tableView.tableHeaderView = headerView        // Uncomment the following line to preserve selection between presentations
+        tableView.tableHeaderView = headerView
+        
+        favArr = favPresenter.getDataFromModel()
+        
+        // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
@@ -49,7 +61,7 @@ class FavTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return favArr.count
     }
 
     
@@ -59,7 +71,8 @@ class FavTableViewController: UITableViewController {
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
         cell.contentView.layoutMargins = UIEdgeInsets(top: 20, left: 0, bottom: 8, right: 0)
-        // Configure the cell...
+        cell.leagueName.text = favArr[indexPath.row].name
+        cell.leagueImage.kf.setImage(with: URL(string: favArr[indexPath.row].imageUrl ?? ""), placeholder: UIImage(named: "basketball"))
 
         return cell
     }

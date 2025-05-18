@@ -14,6 +14,7 @@ class MyCoreDataServices{
     var entity : NSEntityDescription!
     
     static let shared = MyCoreDataServices()
+    
     private init() {
         let appDeleget = UIApplication.shared.delegate as! AppDelegate
         context = appDeleget.persistentContainer.viewContext
@@ -29,7 +30,11 @@ class MyCoreDataServices{
             if results.isEmpty {
                 let leagueCoreDataModel = NSManagedObject(entity: entity, insertInto: context)
                 leagueCoreDataModel.setValue(name, forKey: "name")
-                leagueCoreDataModel.setValue(image, forKey: "image")
+                leagueCoreDataModel.setValue(image, forKey: "imageUrl")
+                
+//                let league = LeagueCoreDataModel(entity: entity, insertInto: context)
+//                                league.name = name
+//                                league.imageUrl = image
                 
                 try context.save()
                 print("League added: \(name)")
@@ -41,18 +46,24 @@ class MyCoreDataServices{
         }
     }
 
-    func getLeague(Handler : @escaping (LeagueCoreDataModel) -> Void) {
+    func getLeague() ->  [LeagueCoreDataModel] {
+        var leagueArray: [LeagueCoreDataModel] = []
+
         let fetchReq = NSFetchRequest<LeagueCoreDataModel>(entityName: "LeagueCoreDataModel")
         do {
             let rsLeague = try context.fetch(fetchReq)
-            for league in rsLeague {
-                print(league.name ?? "No Name")
-                Handler(league)
-            }
+//            for league in rsLeague {
+//                print(league.name ?? "No Name")
+//                //Handler()
+//            }
+            return rsLeague
+           
         } catch let error {
             print("Error: \(error)")
+            return []
         }
     }
+    
 
     
 }

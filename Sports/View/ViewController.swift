@@ -66,7 +66,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
             cell.sportImage.image=UIImage(named: "cricket")
             cell.sportName.text = "cricket"
         case 3:
-            cell.sportImage.image=UIImage(named: "tennis")
+            cell.sportImage.image=UIImage(named: "ice-hockey")
             cell.sportName.text = "tennis"
 
         default:
@@ -101,13 +101,14 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.navigationItem.hidesBackButton = true
-
         
 
     }
+
+
          
 
 
