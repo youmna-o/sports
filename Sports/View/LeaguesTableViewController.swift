@@ -92,7 +92,13 @@ class LeaguesTableViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetails") as! DetailsCollectionViewController
+        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetails") as!
+        DetailsCollectionViewController
+        
+        secondViewController.sportType = sportType
+        secondViewController.leaguesKey = "\([leaguesArray[indexPath.row].leagueKey])"
+        secondViewController.leagueLogo = leaguesArray[indexPath.row].leagueLogo
+        secondViewController.leagueName = leaguesArray[indexPath.row].leagueName
         //secondViewController.movie = moviesList[indexPath.row]
 
         self.navigationController?.pushViewController(secondViewController, animated: true)

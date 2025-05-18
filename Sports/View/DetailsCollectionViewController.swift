@@ -8,6 +8,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
     //from prev
     var sportType : String!
     var leaguesKey : String!
+    
     var leagueName : String!
     var leagueLogo : String!
 
@@ -40,12 +41,12 @@ class DetailsCollectionViewController: UICollectionViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            var sportType = "football"
-            var leaguesKey = "207"
+//            var sportType = "football"
+//            var leaguesKey = "175"
 //        sportType = "tennis"
 //        leaguesKey = "2207"
-         leagueName = "Serie A"
-         leagueLogo = "https://apiv2.allsportsapi.com//logo//logo_leagues//207_serie-a.png"
+//         leagueName = "Serie A"
+//         leagueLogo = "https://apiv2.allsportsapi.com//logo//logo_leagues//207_serie-a.png"
         
         leaguesDetailsPresenter = LeaguesDetailsPresenter()
         leaguesDetailsPresenter.attachTableView(collectionView: self)
@@ -93,8 +94,8 @@ class DetailsCollectionViewController: UICollectionViewController  {
             Event(eventDate: $0.eventDate,
                   eventHomeTeam: $0.eventHomeTeam,
                   eventAwayTeam: $0.eventAwayTeam,
-                  homeTeamLogo: $0.homeTeamLogo,
-                  awayTeamLogo: $0.awayTeamLogo,
+                  homeTeamLogo: $0.homeTeamLogo ?? "",
+                  awayTeamLogo: $0.awayTeamLogo ?? "",
                   eventTime: $0.eventTime)
         }
         renderCommon(details: events)
