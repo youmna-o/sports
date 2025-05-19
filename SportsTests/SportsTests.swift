@@ -32,5 +32,25 @@ final class SportsTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    func testFetchLeaguesDetails() {
+        let expectation = self.expectation(description: "FetchLeaguesDetails")
+
+        let sportType = "football"
+        let leagueId = "207"
+        NetworkService.fetchLeaguesDetails(sportType: sportType, leaguesKey: leagueId) { response in
+            XCTAssertNotNil(response, "Expected non-nil response for fetchLeaguesDetails")
+            
+            if let decoded = response as? LeaguesDetailsResponse {
+                XCTAssertGreaterThan(decoded.result?.count ?? 0, 0, "Expected at least one fixture")
+            } else {
+                XCTFail("Response is not of type LeaguesDetailsResponse")
+            }
+
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+
 
 }
