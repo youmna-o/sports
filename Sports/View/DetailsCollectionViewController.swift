@@ -4,22 +4,34 @@ private let nibreuseIdentifier = "detailsNib"
 private let nibTeamreuseIdentifier = "teamCell"
 var activityIndicator: UIActivityIndicatorView!
 class DetailsCollectionViewController: UICollectionViewController  {
+    
+    //from prev
+    var sportType : String!
+    var leaguesKey : String!
+    
+    var leagueName : String!
+    var leagueLogo : String!
+
+
     var upcomingEvents: [Event] = []
     var latestEvents: [Event] = []
     var teams: [Team] = []
 //done
-    var sportType = "football"
-    var leaguesKey = "207"
-    
+//    var sportType = "football"
+//    var leaguesKey = "207"
+//    
 //    var sportType = "cricket"
 //      var leaguesKey = "745"
 //
-//        var sportType = "basketball"
-//          var leaguesKey = "1153"
+//      var sportType = "basketball"
+//      var leaguesKey = "1153"
     
-//             var sportType = "tennis"
-//             var leaguesKey = "2207"
-    //var leaguesKey ="11072"
+//    sportType = "tennis"
+//    leaguesKey = "2207"
+    
+      //var leaguesKey ="11072"
+    
+      
     
     var leaguesDetailsPresenter: LeaguesDetailsPresenter!
     
@@ -33,6 +45,14 @@ class DetailsCollectionViewController: UICollectionViewController  {
         activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+        
+//            var sportType = "football"
+//            var leaguesKey = "175"
+//        sportType = "tennis"
+//        leaguesKey = "2207"
+//         leagueName = "Serie A"
+//         leagueLogo = "https://apiv2.allsportsapi.com//logo//logo_leagues//207_serie-a.png"
+        
         leaguesDetailsPresenter = LeaguesDetailsPresenter()
         leaguesDetailsPresenter.attachTableView(collectionView: self)
         leaguesDetailsPresenter.getDataFromModel(sportType: sportType, leaguesKey: leaguesKey)
@@ -70,6 +90,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
     }
     
     @objc func addNew() {
+        leaguesDetailsPresenter.addDataToModel(name:leagueName , image:leagueLogo)
     }
 
     func renderFootball(result: LeaguesDetailsResponse) {
@@ -78,8 +99,8 @@ class DetailsCollectionViewController: UICollectionViewController  {
             Event(eventDate: $0.eventDate,
                   eventHomeTeam: $0.eventHomeTeam,
                   eventAwayTeam: $0.eventAwayTeam,
-                  homeTeamLogo: $0.homeTeamLogo,
-                  awayTeamLogo: $0.awayTeamLogo,
+                  homeTeamLogo: $0.homeTeamLogo ?? "",
+                  awayTeamLogo: $0.awayTeamLogo ?? "",
                   eventTime: $0.eventTime)
         }
         renderCommon(details: events)

@@ -36,7 +36,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         let numberOfItemsPerRow: CGFloat = 2
         let spacing: CGFloat = 16
         let totalSpacing = (numberOfItemsPerRow - 1) * spacing
-        let sectionInsets = CGFloat(30 * 2) 
+        let sectionInsets = CGFloat(30 * 2)
         let availableWidth = collectionView.bounds.width - totalSpacing - sectionInsets
         let itemWidth = floor(availableWidth / numberOfItemsPerRow)
         return CGSize(width: itemWidth, height: 200)
@@ -72,7 +72,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         default:
            cell.sportImage.image=UIImage(named: "football")
         }
-        print("************************")
+        print("********")
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -112,4 +112,3 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
 
 
 }
-
