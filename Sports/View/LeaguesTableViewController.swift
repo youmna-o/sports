@@ -96,7 +96,8 @@ class LeaguesTableViewController: UITableViewController {
         DetailsCollectionViewController
         
         secondViewController.sportType = sportType
-        secondViewController.leaguesKey = "\([leaguesArray[indexPath.row].leagueKey])"
+        print(leaguesArray[indexPath.row].leagueKey)
+        secondViewController.leaguesKey = "\(leaguesArray[indexPath.row].leagueKey)"
         secondViewController.leagueLogo = leaguesArray[indexPath.row].leagueLogo
         secondViewController.leagueName = leaguesArray[indexPath.row].leagueName
         //secondViewController.movie = moviesList[indexPath.row]
