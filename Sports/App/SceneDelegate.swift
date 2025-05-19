@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let initialViewController: UIViewController
         if hasSeenOnboarding {
-            initialViewController = storyboard.instantiateViewController(withIdentifier: "Home") as! ViewController
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "tab")
         } else {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingPageViewController") as! UIPageViewController
         }

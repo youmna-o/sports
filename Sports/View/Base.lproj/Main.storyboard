@@ -69,8 +69,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sporty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTI-e5-KmG">
-                                <rect key="frame" x="180.66666666666666" y="123.99999999999999" width="63.666666666666657" height="26.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sportive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTI-e5-KmG">
+                                <rect key="frame" x="157" y="123.99999999999999" width="79" height="26.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -80,8 +80,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qSG-jT-TxW" firstAttribute="leading" secondItem="Y1U-Ej-jyk" secondAttribute="leading" id="AAM-jz-crQ"/>
-                            <constraint firstItem="lTI-e5-KmG" firstAttribute="top" secondItem="Y1U-Ej-jyk" secondAttribute="top" constant="21" id="FC3-XU-14w"/>
-                            <constraint firstItem="lTI-e5-KmG" firstAttribute="centerX" secondItem="z9d-Ps-HUi" secondAttribute="centerX" constant="16" id="ViZ-3j-TBQ"/>
+                            <constraint firstItem="lTI-e5-KmG" firstAttribute="top" secondItem="z9d-Ps-HUi" secondAttribute="top" constant="123.99999999999999" id="FC3-XU-14w"/>
+                            <constraint firstItem="lTI-e5-KmG" firstAttribute="centerX" secondItem="z9d-Ps-HUi" secondAttribute="centerX" id="ViZ-3j-TBQ"/>
                             <constraint firstItem="qSG-jT-TxW" firstAttribute="trailing" secondItem="Y1U-Ej-jyk" secondAttribute="trailing" id="aCl-Sa-5EK"/>
                             <constraint firstItem="qSG-jT-TxW" firstAttribute="centerX" secondItem="z9d-Ps-HUi" secondAttribute="centerX" id="gNP-qO-mYp"/>
                             <constraint firstItem="qSG-jT-TxW" firstAttribute="top" secondItem="lTI-e5-KmG" secondAttribute="bottom" constant="70.333333333333314" id="pnl-LZ-Uyx"/>
@@ -95,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PJF-jX-Fkp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9441.9847328244268" y="-24.647887323943664"/>
+            <point key="canvasLocation" x="5035.8778625954201" y="-461.26760563380282"/>
         </scene>
         <!--Leagues Table View Controller-->
         <scene sceneID="iPA-NL-FNH">
@@ -123,7 +123,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UAS-w7-Hhl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10255.725190839694" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="6097" y="-461"/>
         </scene>
         <!--Team Details View Controller-->
         <scene sceneID="6lj-pw-Kyq">
@@ -133,7 +133,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-manchester-united-48" translatesAutoresizingMaskIntoConstraints="NO" id="U8k-wi-9fl">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U8k-wi-9fl">
                                 <rect key="frame" x="101.66666666666669" y="88" width="190" height="113"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="113" id="3Lo-iB-Jgi"/>
@@ -141,7 +141,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coach:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Dl-mB-Dnz">
-                                <rect key="frame" x="29.999999999999996" y="258" width="56.666666666666657" height="27"/>
+                                <rect key="frame" x="29.999999999999996" y="229" width="56.666666666666657" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="4BN-jD-PBD"/>
                                 </constraints>
@@ -149,8 +149,8 @@
                                 <color key="textColor" systemColor="systemCyanColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J.Klopp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5n3-eX-7MM">
-                                <rect key="frame" x="94.666666666666686" y="258" width="250" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5n3-eX-7MM">
+                                <rect key="frame" x="94.666666666666686" y="229" width="250" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="4U0-DZ-8Vh"/>
                                     <constraint firstAttribute="height" constant="27" id="KDY-is-gSj"/>
@@ -160,7 +160,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tb1-O1-yFW">
-                                <rect key="frame" x="0.0" y="293" width="393" height="559"/>
+                                <rect key="frame" x="0.0" y="264" width="393" height="554"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="393" id="IfP-e2-pjM"/>
@@ -176,8 +176,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LiverPool" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKZ-ts-SSx">
-                                <rect key="frame" x="149" y="209" width="95" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKZ-ts-SSx">
+                                <rect key="frame" x="196.66666666666666" y="209" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -187,7 +187,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1Dl-mB-Dnz" firstAttribute="top" secondItem="iKZ-ts-SSx" secondAttribute="bottom" constant="20" id="43B-8s-ZKg"/>
-                            <constraint firstAttribute="bottom" secondItem="tb1-O1-yFW" secondAttribute="bottom" id="7bR-j8-6hz"/>
                             <constraint firstItem="tb1-O1-yFW" firstAttribute="centerX" secondItem="gHD-r1-Ubc" secondAttribute="centerX" id="DfH-TW-K2E"/>
                             <constraint firstItem="tb1-O1-yFW" firstAttribute="top" secondItem="1Dl-mB-Dnz" secondAttribute="bottom" constant="8" symbolic="YES" id="Dk8-18-LgY"/>
                             <constraint firstItem="iKZ-ts-SSx" firstAttribute="centerX" secondItem="gHD-r1-Ubc" secondAttribute="centerX" id="KB8-Z5-oVs"/>
@@ -197,18 +196,22 @@
                             <constraint firstItem="iKZ-ts-SSx" firstAttribute="top" secondItem="U8k-wi-9fl" secondAttribute="bottom" constant="8" id="SdR-dg-5YG"/>
                             <constraint firstItem="U8k-wi-9fl" firstAttribute="centerX" secondItem="gHD-r1-Ubc" secondAttribute="centerX" id="TEZ-Co-eFP"/>
                             <constraint firstItem="5n3-eX-7MM" firstAttribute="leading" secondItem="1Dl-mB-Dnz" secondAttribute="trailing" constant="8" symbolic="YES" id="VQv-dm-yue"/>
+                            <constraint firstItem="NAy-bm-iTY" firstAttribute="bottom" secondItem="tb1-O1-yFW" secondAttribute="bottom" id="geb-YQ-E5u"/>
                             <constraint firstItem="tb1-O1-yFW" firstAttribute="trailing" secondItem="NAy-bm-iTY" secondAttribute="trailing" id="gzA-I1-PeA"/>
                             <constraint firstItem="5n3-eX-7MM" firstAttribute="top" secondItem="1Dl-mB-Dnz" secondAttribute="top" id="njM-mH-d97"/>
                             <constraint firstItem="iKZ-ts-SSx" firstAttribute="centerX" secondItem="gHD-r1-Ubc" secondAttribute="centerX" id="vgw-aD-s7M"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="coachName" destination="5n3-eX-7MM" id="ahK-sr-FjL"/>
+                        <outlet property="teamLogo" destination="U8k-wi-9fl" id="Qnc-T5-xyw"/>
+                        <outlet property="teamNameLabel" destination="iKZ-ts-SSx" id="yWe-Ch-3BP"/>
                         <outlet property="teamTable" destination="tb1-O1-yFW" id="a2N-8p-eQp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yc1-iA-t6s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11032.824427480915" y="20.422535211267608"/>
+            <point key="canvasLocation" x="7180.9160305343512" y="-419.0140845070423"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="Lmf-OK-Qfm">
@@ -237,7 +240,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbE-X2-OyO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-491" y="-592"/>
+            <point key="canvasLocation" x="3915" y="353"/>
         </scene>
         <!--First On Boarding View Controller-->
         <scene sceneID="jYP-DF-EEq">
@@ -307,7 +310,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUV-5o-C5N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="zBM-9T-oTH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1158.0152671755725" y="352.81690140845075"/>
+            <point key="canvasLocation" x="422" y="353"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="Orh-HR-mmt">
@@ -317,7 +320,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAi-HA-5hW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3185.4961832061067" y="352.81690140845075"/>
+            <point key="canvasLocation" x="-789" y="353"/>
         </scene>
         <!--Details Collection View Controller-->
         <scene sceneID="45h-Yb-sho">
@@ -351,12 +354,12 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2s-u8-iSw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6019.0839694656488" y="64.788732394366207"/>
+            <point key="canvasLocation" x="1498" y="-924"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qxp-hV-GKl">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="hsd-Ip-cmD" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tab" automaticallyAdjustsScrollViewInsets="NO" id="hsd-Ip-cmD" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iHf-bb-238">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -370,13 +373,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nds-ac-1lX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7588.5496183206105" y="-24.647887323943664"/>
+            <point key="canvasLocation" x="2584" y="-592"/>
         </scene>
         <!--Sports-->
         <scene sceneID="8B5-TX-YmC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tbk-wB-FRr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sports" image="sportscourt.fill" catalog="system" id="XnR-yP-cTQ"/>
+                    <tabBarItem key="tabBarItem" title="Sports" image="basketball" catalog="system" id="XnR-yP-cTQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pfT-8s-PeO">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -389,7 +392,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rRc-CY-Wb5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8515.2671755725187" y="-24.647887323943664"/>
+            <point key="canvasLocation" x="3792" y="-519"/>
         </scene>
         <!--Second On Boarding View Controller-->
         <scene sceneID="8cu-iJ-K3X">
@@ -462,7 +465,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eff-xB-qij" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Qaa-Ek-v44" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="486.25954198473278" y="352.81690140845075"/>
+            <point key="canvasLocation" x="1604" y="353"/>
         </scene>
         <!--Third On Boarding View Controller-->
         <scene sceneID="PSF-GB-1MX">
@@ -532,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vY0-sZ-8K6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2106.1068702290077" y="352.81690140845075"/>
+            <point key="canvasLocation" x="2702" y="353"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JJH-EJ-Cep">
@@ -550,16 +553,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="koh-Eb-j3D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4112.2137404580153" y="352.81690140845075"/>
+            <point key="canvasLocation" x="-1932" y="353"/>
         </scene>
     </scenes>
     <resources>
+        <image name="basketball" catalog="system" width="128" height="123"/>
         <image name="folder.fill.badge.person.crop" catalog="system" width="128" height="92"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
-        <image name="icons8-manchester-united-48" width="48" height="48"/>
         <image name="onBoard2" width="1008" height="1050"/>
         <image name="onBoardingFav" width="1010" height="1148"/>
-        <image name="sportscourt.fill" catalog="system" width="128" height="83"/>
         <image name="welcome" width="2000" height="2000"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

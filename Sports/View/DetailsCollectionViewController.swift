@@ -2,7 +2,7 @@ import UIKit
 
 private let nibreuseIdentifier = "detailsNib"
 private let nibTeamreuseIdentifier = "teamCell"
-
+var activityIndicator: UIActivityIndicatorView!
 class DetailsCollectionViewController: UICollectionViewController  {
     var upcomingEvents: [Event] = []
     var latestEvents: [Event] = []
@@ -28,7 +28,11 @@ class DetailsCollectionViewController: UICollectionViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         leaguesDetailsPresenter = LeaguesDetailsPresenter()
         leaguesDetailsPresenter.attachTableView(collectionView: self)
         leaguesDetailsPresenter.getDataFromModel(sportType: sportType, leaguesKey: leaguesKey)
@@ -82,6 +86,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
     }
     
     func renderCricket(result: CricketResponse) {
+        activityIndicator.stopAnimating()
         let details = result.result ?? []
         let events = details.map {
             Event(eventDate: $0.eventDateStart,
@@ -94,6 +99,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
         renderCommon(details: events)
     }
     func renderBasketball(result: BasketballResponse) {
+        activityIndicator.stopAnimating()
         let details = result.result
         let events = details.map {
             Event(eventDate: $0.eventDate,
@@ -106,6 +112,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
         renderCommon(details: events)
    }
     func renderTennis(result: TennisResponse) {
+        activityIndicator.stopAnimating()
         let matches = result.result
         let events = matches.map {
             Event(
@@ -123,6 +130,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
 
     
     func renderCommon(details: [Event]) {
+        activityIndicator.stopAnimating()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let currentDate = Date()
@@ -235,6 +243,13 @@ class DetailsCollectionViewController: UICollectionViewController  {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
             let selectedTeam = teams[indexPath.row]
+            let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetails") as! TeamDetailsViewController
+            secondViewController.teamName = teams[indexPath.row].teamName
+            secondViewController.sportType = sportType
+            //secondViewController.movie = moviesList[indexPath.row]
+
+            self.navigationController?.pushViewController(secondViewController, animated: true)
+
             print("Team Name: \(selectedTeam.teamName)")
         }
     }

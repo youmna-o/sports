@@ -12,6 +12,7 @@ class LeaguesTableViewController: UITableViewController {
     var leaguesArray : [League] = []
     var sportType : String!
     var leaguesPresenter: LeaguesPresenter!
+    var activityIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +25,11 @@ class LeaguesTableViewController: UITableViewController {
         headerView.backgroundColor = .white
 
         let label = UILabel(frame: headerView.bounds)
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         label.text = "\(sportType.capitalized ?? "") Leagues"
         label.textAlignment = .center
        // label.textColor = UIColor(hex: "#1560BD")
@@ -43,7 +49,7 @@ class LeaguesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     func renderToView(result : LeaguesResponse){
-
+        activityIndicator.stopAnimating()
         //print("All Leagues: \(result.result)")
 
         leaguesArray = result.result
