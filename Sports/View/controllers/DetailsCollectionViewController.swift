@@ -56,7 +56,8 @@ class DetailsCollectionViewController: UICollectionViewController  {
         leaguesDetailsPresenter = LeaguesDetailsPresenter()
         leaguesDetailsPresenter.attachTableView(collectionView: self)
         leaguesDetailsPresenter.getDataFromModel(sportType: sportType, leaguesKey: leaguesKey)
-        
+
+
         self.title = "Leagues Details"
         
         let favoriteImage = UIImage(systemName: "heart")
@@ -74,7 +75,8 @@ class DetailsCollectionViewController: UICollectionViewController  {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: "SectionHeaderView"
         )
-        
+        let emptyNib = UINib(nibName: "CollectionViewCell", bundle: nil)
+        collectionView.register(emptyNib, forCellWithReuseIdentifier: "CollectionViewCell")
         let layout = UICollectionViewCompositionalLayout { index, _ in
             switch index {
             case 0:
@@ -192,7 +194,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0: return upcomingEvents.count
+        case 0: return upcomingEvents.isEmpty ? 1 : upcomingEvents.count
         case 1: return latestEvents.count
         case 2: return teams.count
         default: return 0
@@ -202,6 +204,13 @@ class DetailsCollectionViewController: UICollectionViewController  {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
+            if upcomingEvents.isEmpty {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+//                cell.messageLabel.text = "No Upcoming Events"
+//                cell.messageLabel.textAlignment = .center
+//                cell.messageLabel.textColor = .gray
+                return cell
+            }
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: nibreuseIdentifier, for: indexPath) as! DetailsCollectionViewCell
             let detail = upcomingEvents[indexPath.row]
             cell.date.text = detail.eventDate
