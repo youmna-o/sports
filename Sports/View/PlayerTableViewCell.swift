@@ -11,8 +11,15 @@ class PlayerTableViewCell: UITableViewCell {
 
     @IBOutlet weak var innerView: UIView!
     
+    @IBOutlet weak var playerNumber: UILabel!
     
+    @IBOutlet weak var playerName: UILabel!
     
+    @IBOutlet weak var playerPosition: UILabel!
+    
+    @IBOutlet weak var playerRating: UILabel!
+    
+    @IBOutlet weak var playerImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         if let container = innerView {

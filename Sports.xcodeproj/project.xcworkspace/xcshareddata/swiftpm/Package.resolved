@@ -14,8 +14,26 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher.git",
       "state" : {
-        "revision" : "d06df9adf50ed8cde5786d935836a5f445f780ba",
-        "version" : "6.3.1"
+        "revision" : "de7c12c90fadf006cff6e6a47064df06d429d8a9",
+        "version" : "6.0.0"
+      }
+    },
+    {
+      "identity" : "lottie-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-spm.git",
+      "state" : {
+        "revision" : "8c6edf4f0fa84fe9c058600a4295eb0c01661c69",
+        "version" : "4.5.1"
+      }
+    },
+    {
+      "identity" : "reachability.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ashleymills/Reachability.swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "21d1dc412cfecbe6e34f1f4c4eb88d3f912654a6"
       }
     }
   ],

@@ -4,7 +4,7 @@
 //
 //  Created by Macos on 12/05/2025.
 //
-
+/*
 import Foundation
 import UIKit
 class Utils{
@@ -145,3 +145,4 @@ class Utils{
 //let section = NSCollectionLayoutSection(group: group)
 //section.orthogonalScrollingBehavior = .continuous
 //section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+*/
