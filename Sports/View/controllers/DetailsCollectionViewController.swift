@@ -1,26 +1,38 @@
 import UIKit
-
+import Reachability
 private let nibreuseIdentifier = "detailsNib"
 private let nibTeamreuseIdentifier = "teamCell"
 var activityIndicator: UIActivityIndicatorView!
 class DetailsCollectionViewController: UICollectionViewController  {
+    
+    var sportType : String!
+    var leaguesKey : String!
+    
+    var leagueName : String!
+    var leagueLogo : String!
+
+    var isFavorite = false
+
     var upcomingEvents: [Event] = []
     var latestEvents: [Event] = []
     var teams: [Team] = []
 //done
-    var sportType = "football"
-    var leaguesKey = "207"
-    
+//    var sportType = "football"
+//    var leaguesKey = "207"
+//    
 //    var sportType = "cricket"
 //      var leaguesKey = "745"
 //
-//        var sportType = "basketball"
-//          var leaguesKey = "1153"
+//      var sportType = "basketball"
+//      var leaguesKey = "1153"
     
-//             var sportType = "tennis"
-//             var leaguesKey = "2207"
-    //var leaguesKey ="11072"
+//    sportType = "tennis"
+//    leaguesKey = "2207"
     
+      //var leaguesKey ="11072"
+    
+      
+    var favoriteButton: UIBarButtonItem!
     var leaguesDetailsPresenter: LeaguesDetailsPresenter!
     
     let sectionTitles = ["upcoming", "latest", "teams"]
@@ -33,14 +45,22 @@ class DetailsCollectionViewController: UICollectionViewController  {
         activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+        
+//            var sportType = "football"
+//            var leaguesKey = "175"
+//        sportType = "tennis"
+//        leaguesKey = "2207"
+//         leagueName = "Serie A"
+//         leagueLogo = "https://apiv2.allsportsapi.com//logo//logo_leagues//207_serie-a.png"
+        
         leaguesDetailsPresenter = LeaguesDetailsPresenter()
         leaguesDetailsPresenter.attachTableView(collectionView: self)
         leaguesDetailsPresenter.getDataFromModel(sportType: sportType, leaguesKey: leaguesKey)
         
         self.title = "Leagues Details"
         
-        let favoriteImage = UIImage(systemName: "heart.fill")
-        let favoriteButton = UIBarButtonItem(image: favoriteImage, style: .plain, target: self, action: #selector(addNew))
+        let favoriteImage = UIImage(systemName: "heart")
+        favoriteButton = UIBarButtonItem(image: favoriteImage, style: .plain, target: self, action: #selector(addNew))
         self.navigationItem.rightBarButtonItem = favoriteButton
         
         let nib = UINib(nibName: "DetailsCollectionViewCell", bundle: nil)
@@ -70,6 +90,8 @@ class DetailsCollectionViewController: UICollectionViewController  {
     }
     
     @objc func addNew() {
+        favoriteButton.image = UIImage(systemName: "heart.fill")
+        leaguesDetailsPresenter.addDataToModel(name:leagueName , image:leagueLogo,key: leaguesKey,sportType: sportType)
     }
 
     func renderFootball(result: LeaguesDetailsResponse) {
@@ -78,8 +100,8 @@ class DetailsCollectionViewController: UICollectionViewController  {
             Event(eventDate: $0.eventDate,
                   eventHomeTeam: $0.eventHomeTeam,
                   eventAwayTeam: $0.eventAwayTeam,
-                  homeTeamLogo: $0.homeTeamLogo,
-                  awayTeamLogo: $0.awayTeamLogo,
+                  homeTeamLogo: $0.homeTeamLogo ?? "",
+                  awayTeamLogo: $0.awayTeamLogo ?? "",
                   eventTime: $0.eventTime)
         }
         renderCommon(details: events)
@@ -100,7 +122,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
     }
     func renderBasketball(result: BasketballResponse) {
         activityIndicator.stopAnimating()
-        let details = result.result
+        let details = result.result ?? []
         let events = details.map {
             Event(eventDate: $0.eventDate,
                         eventHomeTeam: $0.eventHomeTeam,
@@ -113,7 +135,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
    }
     func renderTennis(result: TennisResponse) {
         activityIndicator.stopAnimating()
-        let matches = result.result
+        let matches = result.result ?? []
         let events = matches.map {
             Event(
                 eventDate: $0.eventDate,
@@ -184,9 +206,9 @@ class DetailsCollectionViewController: UICollectionViewController  {
             let detail = upcomingEvents[indexPath.row]
             cell.date.text = detail.eventDate
             cell.lable1.text = detail.eventHomeTeam
-            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo), placeholder: UIImage(named: "basketball"))
+            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo), placeholder: UIImage(named: "league2"))
             cell.lable2.text = detail.eventAwayTeam
-            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo), placeholder: UIImage(named: "basketball"))
+            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo), placeholder: UIImage(named: "league2"))
             cell.time.text = detail.eventTime
             styleCell(cell)
             return cell
@@ -196,9 +218,9 @@ class DetailsCollectionViewController: UICollectionViewController  {
             let detail = latestEvents[indexPath.row]
             cell.date.text = detail.eventDate
             cell.lable1.text = detail.eventHomeTeam
-            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo), placeholder: UIImage(named: "basketball"))
+            cell.image1?.kf.setImage(with: URL(string: detail.homeTeamLogo), placeholder: UIImage(named: "league2"))
             cell.lable2.text = detail.eventAwayTeam
-            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo), placeholder: UIImage(named: "basketball"))
+            cell.image2?.kf.setImage(with: URL(string: detail.awayTeamLogo), placeholder: UIImage(named: "league2"))
             cell.time.text = detail.eventTime
             styleCell(cell)
             return cell
@@ -207,7 +229,7 @@ class DetailsCollectionViewController: UICollectionViewController  {
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: nibTeamreuseIdentifier, for: indexPath) as! TeamCollectionViewCell
             let team = teams[indexPath.row]
             cell2.name.text = team.teamName
-            cell2.img.kf.setImage(with: URL(string: team.teamLogo), placeholder: UIImage(named: "basketball"))
+            cell2.img.kf.setImage(with: URL(string: team.teamLogo), placeholder: UIImage(named: "league2"))
             styleCell(cell2)
             return cell2
             
@@ -242,15 +264,30 @@ class DetailsCollectionViewController: UICollectionViewController  {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            let selectedTeam = teams[indexPath.row]
-            let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetails") as! TeamDetailsViewController
-            secondViewController.teamName = teams[indexPath.row].teamName
-            secondViewController.sportType = sportType
-            //secondViewController.movie = moviesList[indexPath.row]
+            do {
+                let reachability = try Reachability()
+                if reachability.connection == .unavailable {
+                    let alert = UIAlertController(title: "No Internet Connection", message: "Please check your connection and try again.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
+                        collectionView.delegate?.collectionView?(collectionView, didSelectItemAt: indexPath)
+                    }))
 
-            self.navigationController?.pushViewController(secondViewController, animated: true)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let selectedTeam = teams[indexPath.row]
+                    let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetails") as! TeamDetailsViewController
+                    secondViewController.teamName = teams[indexPath.row].teamName
+                    secondViewController.sportType = sportType
+                    self.navigationController?.pushViewController(secondViewController, animated: true)
 
-            print("Team Name: \(selectedTeam.teamName)")
+                    print("Team Name: \(selectedTeam.teamName)")
+                }
+            } catch {
+                print("Unable to start reachability: \(error)")
+            }
+
         }
     }
+    
 }

@@ -18,7 +18,9 @@ class ThirdOnBoardingViewController: UIViewController {
     @IBAction func done(_ sender: Any) {
         UserDefaults.standard.set(true, forKey: "HideOnBoarding")
 
-        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "Home") as! ViewController
+        let secondViewController = (self.storyboard?.instantiateViewController(withIdentifier: "tab"))!
+        secondViewController.navigationItem.hidesBackButton = true
+
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
     

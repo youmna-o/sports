@@ -9,7 +9,7 @@ import Foundation
 
 struct BasketballResponse: Codable {
     let success: Int
-    let result: [BasketBallDetails]
+    let result: [BasketBallDetails]?
 }
 
 

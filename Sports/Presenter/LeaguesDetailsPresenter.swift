@@ -1,7 +1,11 @@
 import UIKit
 
 class LeaguesDetailsPresenter {
+    
+    let coreObj = MyCoreDataServices.shared
+    
     weak var myCollection : DetailsCollectionViewController!
+    
     
     func attachTableView(collectionView: DetailsCollectionViewController){
         myCollection = collectionView
@@ -35,4 +39,11 @@ class LeaguesDetailsPresenter {
             }
         }
     }
+    func addDataToModel(name:String , image:String,key :String, sportType:String){
+        coreObj.addLeague(name: name,image: image,key : key,sportType: sportType)
+    }
+//    func getDataFromModel(){
+//        coreObj.getLeague{  obj in
+//            print("recived********")}
+//    }
 }

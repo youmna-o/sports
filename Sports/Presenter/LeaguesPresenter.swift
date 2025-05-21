@@ -18,7 +18,7 @@ class LeaguesPresenter{
                     print("No leagues found for \(sportType)")
                     return
                 }
-                self?.myTable.renderToView(result: leagues) // Safe: `leagues` is non-optional
+                self?.myTable.renderToView(result: leagues)
             }
         }
     }

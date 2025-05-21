@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 extension UIColor {
     convenience init?(hex: String, alpha: CGFloat = 1.0) {
         var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
@@ -36,7 +37,7 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         let numberOfItemsPerRow: CGFloat = 2
         let spacing: CGFloat = 16
         let totalSpacing = (numberOfItemsPerRow - 1) * spacing
-        let sectionInsets = CGFloat(30 * 2) 
+        let sectionInsets = CGFloat(30 * 2)
         let availableWidth = collectionView.bounds.width - totalSpacing - sectionInsets
         let itemWidth = floor(availableWidth / numberOfItemsPerRow)
         return CGSize(width: itemWidth, height: 200)
@@ -72,28 +73,43 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
         default:
            cell.sportImage.image=UIImage(named: "football")
         }
-        print("************************")
+        print("********")
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeaguesScreen") as! LeaguesTableViewController
-        switch indexPath.row{
-          case 0:
-            secondViewController.sportType = "football"
-           case 1:
-            secondViewController.sportType = "basketball"
-            case 2:
-            secondViewController.sportType = "cricket"
-            case 3:
-            secondViewController.sportType = "tennis"
-            
-        default:
-            secondViewController.sportType = "football"
+        do {
+            let reachability = try Reachability()
+            if reachability.connection == .unavailable {
+                let alert = UIAlertController(title: "No Internet Connection", message: "Please check your connection and try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
+                    collectionView.delegate?.collectionView?(collectionView, didSelectItemAt: indexPath)
+                }))
 
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeaguesScreen") as! LeaguesTableViewController
+                switch indexPath.row{
+                  case 0:
+                    secondViewController.sportType = "football"
+                   case 1:
+                    secondViewController.sportType = "basketball"
+                    case 2:
+                    secondViewController.sportType = "cricket"
+                    case 3:
+                    secondViewController.sportType = "tennis"
+                    
+                default:
+                    secondViewController.sportType = "football"
+
+                }
+                self.navigationController?.pushViewController(secondViewController, animated: true)
+            }
+        } catch {
+            print("Unable to start reachability: \(error)")
         }
-      //  secondViewController.movie = moviesList[indexPath.row]
+        
 
-        self.navigationController?.pushViewController(secondViewController, animated: true)
 
     }
     
@@ -112,4 +128,3 @@ class ViewController: UIViewController , UICollectionViewDelegate,UICollectionVi
 
 
 }
-
