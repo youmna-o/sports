@@ -2,7 +2,7 @@
 //  LeagueCoreDataModel+CoreDataProperties.swift
 //  Sports
 //
-//  Created by Macos on 17/05/2025.
+//  Created by Macos on 21/05/2025.
 //
 //
 
@@ -16,9 +16,9 @@ extension LeagueCoreDataModel {
         return NSFetchRequest<LeagueCoreDataModel>(entityName: "LeagueCoreDataModel")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var imageUrl: String?
     @NSManaged public var key: String?
+    @NSManaged public var name: String?
     @NSManaged public var sportType: String?
 
 }
