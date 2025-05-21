@@ -48,7 +48,7 @@ class NetworkService : NetworkSProtocol{
         let urlParameters: [String: Any] = [
             "APIkey": "d563ff5053b8ffebbaa19a688960166cb280a840b535413bad65ba3f0c0b662c",
             "met": "Fixtures",
-            "from": "2024-08-01",
+            "from": "2022-08-01",
             "to": "2025-08-30",
             
 //            "from": "2025-05-1",

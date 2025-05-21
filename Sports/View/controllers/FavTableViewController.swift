@@ -6,8 +6,16 @@
 //
 
 import UIKit
+import CoreData
+import Kingfisher
+import Reachability
 
 class FavTableViewController: UITableViewController {
+
+    var context : NSManagedObjectContext!
+    var entity : NSEntityDescription!
+    var favArr : [LeagueCoreDataModel] = []
+    var favPresenter = FavPresenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +35,22 @@ class FavTableViewController: UITableViewController {
 
         headerView.addSubview(label)
 
-        tableView.tableHeaderView = headerView        // Uncomment the following line to preserve selection between presentations
+        tableView.tableHeaderView = headerView
+        
+        favArr = favPresenter.getDataFromModel()
+        
+        // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        favArr = favPresenter.getDataFromModel()
+        tableView.reloadData()
+    }
+
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
@@ -49,7 +67,7 @@ class FavTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return favArr.count
     }
 
     
@@ -59,11 +77,54 @@ class FavTableViewController: UITableViewController {
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
         cell.contentView.layoutMargins = UIEdgeInsets(top: 20, left: 0, bottom: 8, right: 0)
-        // Configure the cell...
+        cell.leagueName.text = favArr[indexPath.row].name
+        cell.leagueImage.kf.setImage(with: URL(string: favArr[indexPath.row].imageUrl ?? ""), placeholder: UIImage(named: "league2"))
 
         return cell
     }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alert = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to remove this league from favorites?", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+                guard let self = self else { return }
+                
+                self.favPresenter.deleteLeagueFromFavorite(index: indexPath.row)
+                self.favArr.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }))
+            
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        do {
+            let reachability = try Reachability()
+            if reachability.connection == .unavailable {
+                let alert = UIAlertController(title: "No Internet Connection", message: "Please check your connection and try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
+                    tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+                }))
+
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetails") as! DetailsCollectionViewController
+                secondViewController.sportType = favArr[indexPath.row].sportType
+                secondViewController.leaguesKey = favArr[indexPath.row].key
+                secondViewController.leagueLogo = favArr[indexPath.row].imageUrl
+                secondViewController.leagueName = favArr[indexPath.row].name
+                self.navigationController?.pushViewController(secondViewController, animated: true)
+            }
+        } catch {
+            print("Unable to start reachability: \(error)")
+        }
+    }
+
     
+
 
     /*
     // Override to support conditional editing of the table view.

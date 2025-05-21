@@ -7,7 +7,7 @@
 
 import UIKit
 import Kingfisher
-
+import Reachability
 class LeaguesTableViewController: UITableViewController {
     var leaguesArray : [League] = []
     var sportType : String!
@@ -93,15 +93,36 @@ class LeaguesTableViewController: UITableViewController {
                                       placeholder: UIImage(named: "league2"),
                                       options: [
                                           .transition(.fade(0.2))
-                                      ])        // Configure the cell...
+                                      ])
 
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetails") as! DetailsCollectionViewController
-        //secondViewController.movie = moviesList[indexPath.row]
+        do {
+            let reachability = try Reachability()
+            if reachability.connection == .unavailable {
+                let alert = UIAlertController(title: "No Internet Connection", message: "Please check your connection and try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
+                    tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+                }))
 
-        self.navigationController?.pushViewController(secondViewController, animated: true)
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetails") as!
+                DetailsCollectionViewController
+                
+                secondViewController.sportType = sportType
+                secondViewController.leaguesKey = "\(leaguesArray[indexPath.row].leagueKey)"
+                secondViewController.leagueLogo = leaguesArray[indexPath.row].leagueLogo ?? ""
+                secondViewController.leagueName = leaguesArray[indexPath.row].leagueName
+                self.navigationController?.pushViewController(secondViewController, animated: true)
+            }
+        } catch {
+            print("Unable to start reachability: \(error)")
+        }
+        
+
     }
 
     /*
