@@ -116,6 +116,8 @@ class FavTableViewController: UITableViewController {
                 secondViewController.leaguesKey = favArr[indexPath.row].key
                 secondViewController.leagueLogo = favArr[indexPath.row].imageUrl
                 secondViewController.leagueName = favArr[indexPath.row].name
+                secondViewController.shouldHideFavoriteButton = true
+
                 self.navigationController?.pushViewController(secondViewController, animated: true)
             }
         } catch {

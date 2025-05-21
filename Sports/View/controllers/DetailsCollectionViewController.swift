@@ -4,7 +4,8 @@ private let nibreuseIdentifier = "detailsNib"
 private let nibTeamreuseIdentifier = "teamCell"
 var activityIndicator: UIActivityIndicatorView!
 class DetailsCollectionViewController: UICollectionViewController  {
-    
+    var shouldHideFavoriteButton: Bool = false
+
     var sportType : String!
     var leaguesKey : String!
     
@@ -63,7 +64,8 @@ class DetailsCollectionViewController: UICollectionViewController  {
         let favoriteImage = UIImage(systemName: "heart")
         favoriteButton = UIBarButtonItem(image: favoriteImage, style: .plain, target: self, action: #selector(addNew))
         self.navigationItem.rightBarButtonItem = favoriteButton
-        
+        favoriteButton.isHidden = shouldHideFavoriteButton
+
         let nib = UINib(nibName: "DetailsCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: nibreuseIdentifier)
         
